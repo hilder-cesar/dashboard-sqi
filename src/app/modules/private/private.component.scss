@@ -1,0 +1,31 @@
+@import "src/sass/import";
+
+.private-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px;
+  background: $color-blue-bold;
+  @include fonte($color-white, "Roboto", 1rem, normal);
+
+  .header-wrapper {
+    @include flexbox(flex, row, nowrap, space-between, center, center);
+
+    .user-wrapper {
+      padding: 8px;
+      background: $color-white;
+      @include border-radius(50px);
+      @include flexbox(flex, row, nowrap, center, center, center);
+
+      fa-icon {
+        font-size: 1.5rem;
+        color: $color-black;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        @include border-radius(50%);
+      }
+    }
+  }
+}

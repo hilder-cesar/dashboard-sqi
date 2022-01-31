@@ -1,0 +1,107 @@
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin box-shadow($shadowX, $shadowY, $blur, $red, $green, $blue, $alpha) {
+  box-shadow: $shadowX $shadowY $blur rgba($red, $green, $blue, $alpha);
+  -webkit-box-shadow: $shadowX $shadowY $blur rgba($red, $green, $blue, $alpha);
+  -moz-box-shadow: $shadowX $shadowY $blur rgba($red, $green, $blue, $alpha);
+}
+
+@mixin fonte($font-color, $font-family, $font-size, $font-weight) {
+  color: $font-color;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+@mixin font-icon($content, $color, $size, $weigth) {
+  background: none;
+  content: $content;
+  color: $color;
+  font: {
+     size: $size;
+     weight: $weigth;
+  }
+}
+@mixin ub-icon-img($img, $w-size, $h-size) {
+   background: url('#{$path-icon}/' + $img);
+   background: {
+       repeat: no-repeat;
+       size: cover;
+       position: 0 0;
+   }
+   display: inline-block;
+   height: $h-size;
+   width: $w-size;
+}
+@mixin bg-img($img) {
+  background: url('#{$path-img}/'+ $img);
+}
+@mixin flexbox($fb-display, $fb-direction, $fb-wrap, $fb-justify, $fb-align-items, $fb-align-content) {
+  //display: flex or inline-flex */
+  display: -webkit-$fb-display;
+  display: -moz-$fb-display;
+  display: -ms-$fb-display;
+  display: -webkit-$fb-display;
+  display: $fb-display;
+
+  //flex-direction: row | row-reverse | column | column-reverse;
+  -webkit-flex-direction: $fb-direction;
+  -moz-flex-direction: $fb-direction;
+  -ms-flex-direction: $fb-direction;
+  -o-flex-direction: $fb-direction;
+  flex-direction: $fb-direction;
+
+  //flex-wrap: nowrap | wrap | wrap-reverse;
+  -webkit-flex-wrap: $fb-wrap;
+  -moz-flex-wrap: $fb-wrap;
+  -ms-flex-wrap: $fb-wrap;
+  -o-flex-wrap: $fb-wrap;
+  flex-wrap: $fb-wrap;
+
+  //justify-content: flex-start | flex-end | center | space-between | space-around;
+  -webkit-justify-content: $fb-justify;
+  -moz-justify-content: $fb-justify;
+  -ms-justify-content: $fb-justify;
+  -o-justify-content: $fb-justify;
+  justify-content: $fb-justify;
+
+  //align-items: flex-start | flex-end | center | baseline | stretch;
+  -webkit-align-items: $fb-align-items;
+  -moz-align-items: $fb-align-items;
+  -ms-align-items: $fb-align-items;
+  -o-align-items: $fb-align-items;
+  align-items: $fb-align-items;
+
+  //align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+  -webkit-align-content: $fb-align-content;
+  -moz-align-content: $fb-align-content;
+  -ms-align-content: $fb-align-content;
+  -o-align-content: $fb-align-content;
+  align-content: $fb-align-content;
+}
+@mixin order($order) {
+  -webkit-order: $order;
+  -moz-order: $order;
+  -ms-order: $order;
+  -o-order: $order;
+  order: $order;
+}
+@mixin display-flex() {
+  -webkit-display: flex;
+  -moz-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  display: flex;
+}
+@mixin transition($property, $duration, $ease) {
+  -webkit-transition: $property $duration $ease;
+  -moz-transition: $property $duration $ease;
+  -o-transition: $property $duration $ease;
+  transition: $property $duration $ease;
+}

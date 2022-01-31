@@ -1,0 +1,15 @@
+<span *ngIf="(control?.touched || control?.dirty) && control?.errors">
+  <small class="validate-info" *ngIf="control?.errors?.required">Por favor, informe esse campo.</small>
+  <small class="validate-info" *ngIf="control?.errors?.email">Por favor, informe email válido.</small>
+  <small class="validate-info" *ngIf="control?.errors?.minlength">Por favor, informe no mínimo {{control?.errors?.minlength.requiredLength}} caracteres.</small>
+  <small class="validate-info" *ngIf="control?.errors?.maxlength">Por favor, informe no máximo {{control?.errors?.maxlength.requiredLength}} caracteres.</small>
+  <small class="validate-info" *ngIf="control?.errors?.min">Por favor, informe um valor maior que {{control?.errors?.min.min}}.</small>
+  <small class="validate-info" *ngIf="control?.errors?.max">Por favor, informe um valor menor que {{control?.errors?.max.max}}.</small>
+  <small class="validate-info" *ngIf="control?.errors?.pattern">Por favor, informe esse campo no formato correto.</small>
+  <small class="validate-info" *ngIf="control?.errors?.cnpj">Por favor, informe um CNPJ válido.</small>
+  <small class="validate-info" *ngIf="control?.errors?.cpf">Por favor, informe um CPF válido.</small>
+  <small class="validate-info" *ngIf="control?.errors?.olderThan18">Para continuar, você deve ser maior que 18.</small>
+  <small class="validate-info" *ngIf="control?.errors?.inUse">Já em uso.</small>
+  <small class="validate-info" *ngIf="control?.errors?.dateError">Por favor, informe uma data maior que hoje.</small>
+  <small class="validate-info" *ngIf="control?.errors?.isDateBeforeTomorrowError">Por favor, informe uma data menor que hoje.</small>
+</span>
