@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// Contaienr
+// Container
 import { PrivateComponent } from './private.component';
 
 const routes: Routes = [
-  { path: '', component: PrivateComponent, children: [
-
-  ]}
+  {
+    path: '', component: PrivateComponent, children: [
+      { path: 'qualitativo', loadChildren: () => import('./qualitative/qualitative.module').then(m => m.QualitativeModule) },
+      { path: '**', redirectTo: 'qualitativo', pathMatch: 'full' }
+    ]
+  }
 ];
 
 @NgModule({
