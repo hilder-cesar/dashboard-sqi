@@ -1,17 +1,57 @@
-<div class="private-wrapper">
+<form [formGroup]="filterForm">
+  <div class="private-wrapper">
 
-  <div class="header-wrapper">
-    <img src="" alt="SQI Logo" />
+    <div class="header-wrapper">
+      <img src="" alt="SQI Logo" />
 
-    <div class="filter-wrapper">
+      <div class="filter-wrapper col-xl-8">
 
-    </div>
+        <ng-container>
+          <div class="col-xl-3">
+            <div class="form-group mb-0">
+              <label>Data</label>
+              <input class="form-control" (click)="d.toggle()" [value]="parseDate()" />
+            </div>
+            <input class="date" (dateSelect)="onDateSelection($event)" ngbDatepicker #d="ngbDatepicker"
+              [autoClose]="'outside'" [dayTemplate]="t" [displayMonths]="1" [navigation]="'arrows'" />
+          </div>
+          <ng-template #t let-date let-focused="focused">
+            <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+              [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+              (mouseleave)="hoveredDate = null">
+              {{ date.day }}
+            </span>
+          </ng-template>
+        </ng-container>
 
-    <div class="user-wrapper">
-      <fa-icon class="mx-3" [icon]="faBars"></fa-icon>
-      <img src="https://picsum.photos/200" alt="User Photo" />
+        <div class="col-xl-3">
+          <div class="form-group mb-0">
+            <label>Gênero</label>
+            <input class="form-control" />
+          </div>
+
+        </div>
+        <div class="col-xl-3">
+          <div class="form-group mb-0">
+            <label>Idade</label>
+            <input class="form-control" />
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="form-group mb-0">
+            <label>Outros</label>
+            <input class="form-control" />
+          </div>
+        </div>
+
+      </div>
+
+      <div class="user-wrapper">
+        <fa-icon class="mx-3" [icon]="faBars"></fa-icon>
+        <img src="https://picsum.photos/200" alt="User Photo" />
+      </div>
+
     </div>
 
   </div>
-
-</div>
+</form>

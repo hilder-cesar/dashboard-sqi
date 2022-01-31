@@ -1,5 +1,10 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+// locale
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +26,10 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    // locale
+    { provide: LOCALE_ID, useValue: 'pt' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
