@@ -5,17 +5,18 @@
   width: 100%;
   padding: 40px 80px;
   background: $color-blue-bold;
-  @include fonte($color-white, "Roboto", 1rem, normal);
+  @include fonte($color-white, "myriad-pro;", 1rem, normal);
 
   .header-wrapper {
-    @include flexbox(flex, row, nowrap, space-between, center, center);
+    @include flexbox(flex, row, wrap, space-between, center, center);
 
     .filter-wrapper {
+      margin: 2rem 0;
       padding: 8px;
       background: $color-white;
       @include border-radius(8px);
-      @include fonte($color-blue-bold, "Roboto", 1rem, normal);
-      @include flexbox(flex, row, nowrap, center, center, center);
+      @include fonte($color-blue-bold, "myriad-pro", 1rem, normal);
+      @include flexbox(flex, row, wrap, center, center, center);
 
       input.date {
         width: 0;
@@ -29,11 +30,12 @@
       padding: 8px;
       background: $color-white;
       @include border-radius(50px);
-      @include flexbox(flex, row, nowrap, center, center, center);
+      @include flexbox(flex, row, wrap, center, center, center);
 
       fa-icon {
         font-size: 1.5rem;
         color: $color-black;
+        cursor: pointer;
       }
 
       img {
@@ -52,7 +54,7 @@
 .custom-day {
   text-align: center;
   font-size: 14px !important;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'myriad-pro', sans-serif;
   font-weight: bold;
   padding: 5px;
   border-radius: 50%;
@@ -102,7 +104,7 @@
     }
   }
   .ngb-dp-month-name {
-    font-family: "Roboto", sans-serif;
+    font-family: "myriad-pro", sans-serif;
     font-weight: bold;
     font-size: 14px !important;
     text-transform: capitalize;

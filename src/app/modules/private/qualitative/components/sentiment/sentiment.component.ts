@@ -82,7 +82,50 @@ export class SentimentComponent implements OnInit {
       },
       series: [
         { type: 'gauge', name: 'Sentimento', data: [1], dataLabels: { enabled: false } }
-      ]
+      ],
+      responsive: {
+        rules: [
+          {
+            condition: {
+              maxWidth: 1440
+            },
+            chartOptions: {
+              pane: {
+                center: ['50%', '100%'],
+                size: '140%'
+              }
+            }
+          },
+          {
+            condition: {
+              maxWidth: 1024
+            },
+            chartOptions: {
+              chart: {
+                height: '400px'
+              },
+              pane: {
+                center: ['50%', '100%'],
+                size: '200%'
+              }
+            }
+          },
+          {
+            condition: {
+              maxWidth: 768
+            },
+            chartOptions: {
+              chart: {
+                height: '300px'
+              },
+              pane: {
+                center: ['50%', '100%'],
+                size: '160%'
+              }
+            }
+          }
+        ]
+      }
     };
   }
 

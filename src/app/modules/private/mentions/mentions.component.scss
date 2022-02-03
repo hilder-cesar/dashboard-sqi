@@ -1,0 +1,64 @@
+@import "src/sass/import";
+
+.list-wrapper {
+  max-height: 600px;
+  overflow-y: auto;
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: $color-blue-light;
+  }
+}
+
+.influencer-wrapper {
+  @include flexbox(flex, row, nowrap, flex-start, center, center);
+  img {
+    width: 75px;
+    height: 75px;
+    border: 1px solid $color-blue-light;
+    @include border-radius(50%);
+  }
+  .influence-info {
+    width: 100%;
+    padding: 0 1rem;
+    @include fonte($color-white, "myriad-pro", 1.5rem, bold);
+    p {
+      margin: 0;
+    }
+
+    fa-icon {
+      margin-right: 1rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+.mention-wrapper {
+  @include flexbox(flex, row, nowrap, flex-start, flex-start, center);
+  img {
+    width: 75px;
+    height: 75px;
+    border: 1px solid $color-blue-light;
+    @include border-radius(50%);
+  }
+  .mention-info {
+    width: 100%;
+    padding: 0 1rem;
+    span {
+      @include fonte(rgba($color-white, 0.6), "myriad-pro", 1rem, bold);
+    }
+    p {
+      @include fonte($color-white, "myriad-pro", 1rem, bold);
+      margin: 0;
+    }
+  }
+}

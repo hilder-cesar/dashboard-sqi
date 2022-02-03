@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // Modules
 import { PublicProfileRoutingModule } from './public-profile-routing.module';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 // Container
 import { PublicProfileComponent } from './public-profile.component';
@@ -14,7 +15,8 @@ import { PublicProfileComponent } from './public-profile.component';
   ],
   imports: [
     CommonModule,
-    PublicProfileRoutingModule
+    PublicProfileRoutingModule,
+    HighchartsChartModule
   ]
 })
 export class PublicProfileModule { }

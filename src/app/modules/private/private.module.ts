@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 // Modules
 import { PrivateRoutingModule } from './private-routing.module';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Container
 import { PrivateComponent } from './private.component';
@@ -17,7 +17,8 @@ import { PrivateComponent } from './private.component';
     CommonModule,
     PrivateRoutingModule,
     SharedModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    NgbDropdownModule
   ]
 })
 export class PrivateModule { }

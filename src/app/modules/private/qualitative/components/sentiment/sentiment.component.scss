@@ -1,15 +1,15 @@
 @import "src/sass/import";
 
 .total {
-  @include fonte($color-blue-light, "Roboto", 50px, 700);
+  @include fonte($color-blue-light, "myriad-pro", 45px, 700);
 }
 
 .percent-positivo {
-  @include fonte($color-green-bold, "Roboto", 2rem, 700);
+  @include fonte($color-green-bold, "myriad-pro", 2rem, 700);
 }
 .percent-neutro {
-  @include fonte($color-yellow-bold, "Roboto", 2rem, 700);
+  @include fonte($color-yellow-bold, "myriad-pro", 2rem, 700);
 }
 .percent-negativo {
-  @include fonte($color-red-bold, "Roboto", 2rem, 700);
+  @include fonte($color-red-bold, "myriad-pro", 2rem, 700);
 }

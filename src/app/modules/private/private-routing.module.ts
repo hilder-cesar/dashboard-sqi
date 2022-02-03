@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '', component: PrivateComponent, children: [
       { path: 'qualitativo', loadChildren: () => import('./qualitative/qualitative.module').then(m => m.QualitativeModule) },
-      { path: 'analise', loadChildren: () => import('./public-analysis/public-analysis.module').then(m => m.PublicAnalysisModule) },
+      { path: 'publico', loadChildren: () => import('./public-analysis/public-analysis.module').then(m => m.PublicAnalysisModule) },
       { path: 'perfil', loadChildren: () => import('./public-profile/public-profile.module').then(m => m.PublicProfileModule) },
       { path: 'wordcloud', loadChildren: () => import('./wordcloud/wordcloud.module').then(m => m.WordcloudModule) },
       { path: 'mencoes', loadChildren: () => import('./mentions/mentions.module').then(m => m.MentionsModule) },

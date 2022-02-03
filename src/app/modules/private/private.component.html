@@ -2,7 +2,7 @@
   <div class="private-wrapper">
 
     <div class="header-wrapper">
-      <img src="" alt="SQI Logo" />
+      <img src="assets/logo.png" alt="SQI Logo" />
 
       <div class="filter-wrapper col-xl-8">
 
@@ -47,7 +47,18 @@
       </div>
 
       <div class="user-wrapper">
-        <fa-icon class="mx-3" [icon]="faBars"></fa-icon>
+        <div ngbDropdown>
+          <fa-icon class="mx-3" [icon]="faBars" ngbDropdownToggle></fa-icon>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button routerLink="qualitativo" ngbDropdownItem>Análise qualitativa</button>
+            <button routerLink="publico" ngbDropdownItem>Análise do público</button>
+            <button routerLink="perfil" ngbDropdownItem>Perfil político</button>
+            <button routerLink="wordcloud" ngbDropdownItem>Wordcloud</button>
+            <button routerLink="mencoes" ngbDropdownItem>Menções</button>
+            <button routerLink="dados-proprietarios" ngbDropdownItem>Dados proprietário</button>
+            <button routerLink="insights" ngbDropdownItem>Insights</button>
+          </div>
+        </div>
         <img src="https://picsum.photos/200" alt="User Photo" />
       </div>
 

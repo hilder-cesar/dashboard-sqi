@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // Modules
 import { MentionsRoutingModule } from './mentions-routing.module';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 // Container
 import { MentionsComponent } from './mentions.component';
@@ -13,7 +14,8 @@ import { MentionsComponent } from './mentions.component';
   ],
   imports: [
     CommonModule,
-    MentionsRoutingModule
+    MentionsRoutingModule,
+    SharedModule
   ]
 })
 export class MentionsModule { }
