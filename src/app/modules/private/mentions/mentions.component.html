@@ -31,7 +31,7 @@
       <ng-container *ngFor="let mention of mentionsList">
         <a [href]="mention.link" target="_blank">
           <div class="mention-wrapper my-4">
-            <img src="https://picsum.photos/75" alt="influencer-name" />
+            <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
             <div class="mention-info">
               <span>{{mention.autor}} | {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}} </span>
               <p>
