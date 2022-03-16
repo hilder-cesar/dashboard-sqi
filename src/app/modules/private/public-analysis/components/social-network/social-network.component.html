@@ -1,0 +1,10 @@
+<h5>Distribuição por redes</h5>
+
+<div class="row">
+  <ng-container *ngFor="let socialNetwork of socialNetworkCount">
+    <div class="col-xl-3 d-flex flex-column align-items-center">
+      <fa-icon [icon]="getSocialIcon(socialNetwork.name)"></fa-icon>
+      <p>{{socialNetwork.total}}</p>
+    </div>
+  </ng-container>
+</div>

@@ -1,7 +1,7 @@
 <h5>Sentimentos das menções</h5>
 <div class="row">
   <div class="col-xl-4 d-flex align-items-center">
-    <h5 class="total">1.732 total</h5>
+    <h5 class="total">total {{totalValue}}</h5>
   </div>
   <div class="col-xl-8">
     <highcharts-chart *ngIf="Highcharts" [Highcharts]="Highcharts" [options]="chartOptions"
@@ -9,16 +9,16 @@
     </highcharts-chart>
     <div class="d-flex justify-content-between">
       <div class="text-center">
-        <h3 class="percent-positivo">34.12%</h3>
-        <p>591 <br /> positivos</p>
+        <h3 class="percent-positivo">{{ sentimentCount && getPercentage('impartial') }}</h3>
+        <p>{{sentimentCount?.positive}} <br /> positivos</p>
       </div>
       <div class="text-center">
-        <h3 class="percent-neutro">64.49%</h3>
-        <p>1.117 <br /> neutros</p>
+        <h3 class="percent-neutro">{{ sentimentCount && getPercentage('impartial') }}</h3>
+        <p>{{sentimentCount?.impartial}} <br /> neutros</p>
       </div>
       <div class="text-center">
-        <h3 class="percent-negativo">1.39%</h3>
-        <p>24 <br /> negativos</p>
+        <h3 class="percent-negativo">{{ sentimentCount && getPercentage('negative') }}</h3>
+        <p>{{sentimentCount?.negative}} <br /> negativos</p>
       </div>
     </div>
   </div>

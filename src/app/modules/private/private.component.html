@@ -10,7 +10,7 @@
           <div class="col-xl-3">
             <div class="form-group mb-0">
               <label>Data</label>
-              <input class="form-control" (click)="d.toggle()" [value]="parseDate()" readonly/>
+              <input class="form-control" (click)="d.toggle()" [value]="parseDate()" readonly />
             </div>
             <input class="date" (dateSelect)="onDateSelection($event)" ngbDatepicker #d="ngbDatepicker"
               [autoClose]="'outside'" [dayTemplate]="t" [displayMonths]="1" [navigation]="'arrows'" />
@@ -26,21 +26,114 @@
 
         <div class="col-xl-3">
           <div class="form-group mb-0">
-            <label>Gênero</label>
-            <input class="form-control" />
+            <div ngbDropdown>
+              <label for="genderDropdown">Gêneros</label>
+              <input class="form-control" id="genderDropdown" ngbDropdownToggle readonly />
+              <div class="p-4" ngbDropdownMenu aria-labelledby="genderDropdown">
+                <ng-container *ngFor="let gender of genderList">
+                  <div class="d-flex align-items-center mr-3">
+                    <input [id]="gender.name" type="checkbox" class="mr-2"
+                      [checked]="selectionChecked({ name: 'gender', value: gender.name })"
+                      (change)="selectionChange($event, { name: 'gender', value: gender.name })" />
+                    <label [for]="gender.name" class="mb-0">{{gender.name}}</label>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="form-group mb-0">
+            <div ngbDropdown>
+              <label for="ageDropdown">Idade</label>
+              <input class="form-control" id="ageDropdown" ngbDropdownToggle readonly />
+              <div class="p-4" ngbDropdownMenu aria-labelledby="ageDropdown">
+                <ng-container *ngFor="let age of ageList">
+                  <div class="d-flex align-items-center mr-3">
+                    <input [id]="age.name" type="checkbox" class="mr-2"
+                      [checked]="selectionChecked({ name: 'age', value: age.name })"
+                      (change)="selectionChange($event, { name: 'age', value: age.name })" />
+                    <label [for]="age.name" class="mb-0">{{age.name}}</label>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div ngbDropdown>
+            <label for="othersDropdown">Outros</label>
+            <input class="form-control" id="othersDropdown" ngbDropdownToggle readonly />
+            <div class="min-width" ngbDropdownMenu aria-labelledby="othersDropdown">
+              <div class="d-flex">
+                <div class="col-xl-6">
+                  <h5>Redes</h5>
+                  <div class="d-flex flex-wrap mb-3">
+                    <ng-container *ngFor="let socialNetwork of socialNetworkList">
+                      <div class="d-flex align-items-center mr-3">
+                        <input [id]="socialNetwork.name" type="checkbox" class="mr-2"
+                          [checked]="selectionChecked({ name: 'socialNetwork', value: socialNetwork.name })"
+                          (change)="selectionChange($event, { name: 'socialNetwork', value: socialNetwork.name })" />
+                        <label [for]="socialNetwork.name" class="mb-0">{{socialNetwork.name}}</label>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <h5>Posicionamento Político</h5>
+                  <div class="d-flex flex-wrap mb-3">
+                    <ng-container *ngFor="let position of positioningList">
+                      <div class="d-flex align-items-center mr-3">
+                        <input type="checkbox" [id]="'posicionamento'+position.name"
+                          [checked]="selectionChecked({ name: 'politicalPos', value: position.name })"
+                          (change)="selectionChange($event, { name: 'politicalPos', value: position.name })"
+                          class="mr-2" />
+                        <label [for]="'posicionamento'+position.name" class="mb-0">{{position.name}}</label>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <h5>Menções</h5>
+                  <div class="d-flex flex-wrap mb-3">
+                    <ng-container *ngFor="let sentiment of sentimentList">
+                      <div class="d-flex align-items-center mr-3">
+                        <input type="checkbox" [id]="'mencoes'+sentiment.name"
+                          [checked]="selectionChecked({ name: 'mentions', value: sentiment.name })"
+                          (change)="selectionChange($event, { name: 'mentions', value: sentiment.name })"
+                          class="mr-2" />
+                        <label [for]="'mencoes'+sentiment.name" class="mb-0">{{sentiment.name}}</label>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
 
-        </div>
-        <div class="col-xl-3">
-          <div class="form-group mb-0">
-            <label>Idade</label>
-            <input class="form-control" />
-          </div>
-        </div>
-        <div class="col-xl-3">
-          <div class="form-group mb-0">
-            <label>Outros</label>
-            <input class="form-control" />
+                <div class="col-xl-6">
+
+                  <h5>Principais assuntos</h5>
+                  <div class="d-flex flex-wrap mb-3">
+                    <ng-container *ngFor="let subject of subjectList">
+                      <div class="d-flex align-items-center">
+                        <input type="checkbox" [id]="subject.name"
+                          [checked]="selectionChecked({ name: 'subjects', value: subject.name })"
+                          (change)="selectionChange($event, { name: 'subjects', value: subject.name })" class="mr-2" />
+                        <label [for]="subject.name" class="mb-0">{{subject.name}}</label>
+                      </div>
+                    </ng-container>
+                  </div>
+
+                  <h5>Grupos</h5>
+                  <div class="d-flex flex-wrap mb-3">
+                    <ng-container *ngFor="let group of groupList">
+                      <div class="d-flex align-items-center mr-3">
+                        <input type="checkbox" [id]="group.name"
+                          [checked]="selectionChecked({ name: 'groups', value: group.name })"
+                          (change)="selectionChange($event, { name: 'groups', value: group.name})" class="mr-2" />
+                        <label [for]="group.name" class="mb-0">{{group.name}}</label>
+                      </div>
+                    </ng-container>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
 
@@ -48,8 +141,8 @@
 
       <div class="user-wrapper">
         <div ngbDropdown>
-          <fa-icon class="mx-3" [icon]="faBars" ngbDropdownToggle></fa-icon>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <fa-icon class="mx-3" [icon]="faBars" id="menuDropdown" ngbDropdownToggle></fa-icon>
+          <div ngbDropdownMenu aria-labelledby="menuDropdown">
             <button routerLink="qualitativo" ngbDropdownItem>Análise qualitativa</button>
             <button routerLink="publico" ngbDropdownItem>Análise do público</button>
             <button routerLink="perfil" ngbDropdownItem>Perfil político</button>

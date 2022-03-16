@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 // Chart
 import * as Highcharts from 'highcharts';
+import { Sentiment } from 'src/app/utils/interfaces/sentiment.interface';
 
 @Component({
   selector: 'app-top-subjects',
@@ -9,6 +10,8 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./top-subjects.component.scss']
 })
 export class TopSubjectsComponent implements OnInit {
+
+  @Input() topSubjects!: any;
 
   Highcharts!: typeof Highcharts;
   chartOptions: Highcharts.Options = {};
@@ -91,15 +94,19 @@ export class TopSubjectsComponent implements OnInit {
           name: 'Neutras',
           data: [3, 4, 4],
           color: '#f7c911'
-        },
-        {
-          type: 'bar',
-          name: 'Sem qualificações',
-          data: [3, 4, 4],
-          color: '#ccc'
         }
       ]
     };
+  }
+
+  getSeries(seriesType: Sentiment): any {
+    const seriesValue = this.topSubjects[seriesType];
+    return seriesValue.map((series: any) => series.total);
+  }
+
+  getCategories(seriesType: Sentiment): any {
+    const seriesValue = this.topSubjects[seriesType];
+    return seriesValue.map((series: any) => series.time);
   }
 
 }

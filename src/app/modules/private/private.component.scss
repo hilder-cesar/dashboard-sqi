@@ -1,5 +1,12 @@
 @import "src/sass/import";
 
+::ng-deep {
+  .min-width {
+    width: 600px;
+    right: 0 !important;
+    left: initial !important;
+  }
+}
 .private-wrapper {
   min-height: 100vh;
   width: 100%;
@@ -54,7 +61,7 @@
 .custom-day {
   text-align: center;
   font-size: 14px !important;
-  font-family: 'myriad-pro', sans-serif;
+  font-family: "myriad-pro", sans-serif;
   font-weight: bold;
   padding: 5px;
   border-radius: 50%;
@@ -82,7 +89,7 @@
   .ngb-dp-day {
     margin: 5px;
     &.ngb-dp-today {
-      border: 1px solid rgba(0, 0, 0, .2);
+      border: 1px solid rgba(0, 0, 0, 0.2);
       border-radius: 50%;
     }
   }
@@ -98,8 +105,8 @@
       color: black !important;
       font-size: 14px !important;
       .ngb-dp-navigation-chevron {
-        height: .4em;
-        width: .4em;
+        height: 0.4em;
+        width: 0.4em;
       }
     }
   }
@@ -110,7 +117,7 @@
     text-transform: capitalize;
     background: white !important;
   }
-  .ngb-dp-weekdays{
+  .ngb-dp-weekdays {
     justify-content: space-around;
     background: $color-white !important;
     color: $color-blue-bold;

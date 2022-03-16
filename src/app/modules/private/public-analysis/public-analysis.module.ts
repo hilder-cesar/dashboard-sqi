@@ -9,10 +9,20 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
 // Container
 import { PublicAnalysisComponent } from './public-analysis.component';
 
+// Components
+import { GroupComponent } from './components/group/group.component';
+import { NetworkComponent } from './components/social-network/social-network.component';
+import { GenderComponent } from './components/gender/gender.component';
+import { AgeComponent } from './components/age/age.component';
+
 
 @NgModule({
   declarations: [
-    PublicAnalysisComponent
+    PublicAnalysisComponent,
+    GroupComponent,
+    NetworkComponent,
+    GenderComponent,
+    AgeComponent
   ],
   imports: [
     CommonModule,

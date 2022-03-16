@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 // Chart
 import * as Highcharts from 'highcharts';
+import { Sentiment, SentimentTime } from 'src/app/utils/interfaces/sentiment.interface';
 
 @Component({
   selector: 'app-sentiment-hour',
   templateUrl: './sentiment-hour.component.html',
   styleUrls: ['./sentiment-hour.component.scss']
 })
-export class SentimentHourComponent implements OnInit {
+export class SentimentHourComponent implements OnChanges {
 
   Highcharts!: typeof Highcharts;
   chartOptions: Highcharts.Options = {};
 
-  ngOnInit(): void {
-    this.initChart();
+  @Input() sentimentByTime!: any;
+
+  ngOnChanges(simpleChanges: SimpleChanges): void {
+    if (simpleChanges.sentimentByTime.currentValue) {
+      this.initChart();
+    }
   }
 
   initChart(): void {
@@ -28,7 +33,7 @@ export class SentimentHourComponent implements OnInit {
         text: ''
       },
       xAxis: {
-        categories: ['0-2h', '4-6h', '8-10h'],
+        categories: this.getCategories(Sentiment.positive),
         tickmarkPlacement: 'on',
         gridLineWidth: 1,
         title: {
@@ -63,7 +68,7 @@ export class SentimentHourComponent implements OnInit {
           color: 'white',
           lineWidth: 5,
           borderWidth: 1,
-          label:{
+          label: {
             style: {
               color: 'white'
             }
@@ -75,29 +80,36 @@ export class SentimentHourComponent implements OnInit {
         {
           type: 'line',
           name: 'Positivas',
-          data: [502, 635, 809],
+          data: this.getSeries(Sentiment.positive),
           color: '#009245'
         },
         {
           type: 'line',
-          name: 'Negativas',
-          data: [106, 107, 111],
+          name: 'Negativos',
+          data: this.getSeries(Sentiment.negative),
           color: '#e91c13'
         },
         {
           type: 'line',
           name: 'Neutras',
-          data: [163, 203, 276],
+          data: this.getSeries(Sentiment.impartial),
           color: '#f7c911'
-        },
-        {
-          type: 'line',
-          name: 'Sem qualificação',
-          data: [18, 31, 54],
-          color: '#ccc'
         }
       ]
     };
+  }
+
+  getSeries(seriesType: Sentiment): any {
+    const seriesValue = this.sentimentByTime[seriesType];
+    return seriesValue.map((series: SentimentTime) => series.total);
+  }
+
+  getCategories(seriesType: Sentiment): any {
+    const seriesValue = this.sentimentByTime[seriesType];
+    return seriesValue.map((series: SentimentTime) => {
+      const date = new Date(series.time);
+      return `${date.getDate()}/${date.getMonth() + 1} - ${date.getHours()} a ${date.getHours() + 2}h`;
+    });
   }
 
 }

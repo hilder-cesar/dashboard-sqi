@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Sentiment, SentimentCountInterface } from 'src/app/utils/interfaces/sentiment.interface';
 
 // Chart
 import * as Highcharts from 'highcharts';
@@ -12,13 +13,28 @@ HC_SolidGauge(Highcharts);
   templateUrl: './sentiment.component.html',
   styleUrls: ['./sentiment.component.scss']
 })
-export class SentimentComponent implements OnInit {
+export class SentimentComponent implements OnChanges {
 
   Highcharts!: typeof Highcharts;
   chartOptions: Highcharts.Options = {};
 
-  ngOnInit(): void {
-    this.initChart();
+  @Input() sentimentCount!: SentimentCountInterface;
+  totalValue: number = 0;
+
+  ngOnChanges(simpleChanges: SimpleChanges): void {
+    if (simpleChanges.sentimentCount.currentValue) {
+      this.initChart();
+    }
+  }
+
+  getPercentage(sentiment: string): number {
+    this.totalValue = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
+    switch (sentiment) {
+      case 'impartial': return (100 * this.sentimentCount.impartial) / this.totalValue || 0;
+      case 'negative': return (100 * this.sentimentCount.negative) / this.totalValue || 0;
+      case 'positive': return (100 * this.sentimentCount.positive) / this.totalValue || 0;
+      default: return 0;
+    }
   }
 
   initChart(): void {
