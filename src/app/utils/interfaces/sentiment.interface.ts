@@ -5,8 +5,14 @@ export interface SentimentCountInterface {
 }
 
 export interface SentimentTime {
-  time: Date;
+  dateString: string;
+  impartial: number;
+  negative: number;
+  positive: number;
   total: number;
+  postDate: Date;
+  range: string;
+  unqualified: number;
 }
 export interface SentimentByTime {
   impartial: SentimentTime[]; 

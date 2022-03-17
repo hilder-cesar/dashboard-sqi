@@ -3,8 +3,8 @@
 <div class="row">
   <ng-container *ngFor="let socialNetwork of socialNetworkCount">
     <div class="col-xl-3 d-flex flex-column align-items-center">
-      <fa-icon [icon]="getSocialIcon(socialNetwork.name)"></fa-icon>
-      <p>{{socialNetwork.total}}</p>
+      <fa-icon [ngStyle]="{'color': getColor(socialNetwork.name)}" [icon]="getIcon(socialNetwork.name)"></fa-icon>
+      <p>{{socialNetwork.total | number}}</p>
     </div>
   </ng-container>
 </div>

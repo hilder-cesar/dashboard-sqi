@@ -3,8 +3,9 @@
 <div class="row">
   <ng-container *ngFor="let gender of genderCount">
     <div class="col-xl-3 d-flex flex-column align-items-center">
+      <fa-icon [ngStyle]="{ 'color': getColor(gender.name) }" [icon]="getIcon(gender.name)"></fa-icon>
       <h5>{{ gender.name }} </h5>
-      {{ gender.total }}
+      {{ gender.total | number}}
     </div>
   </ng-container>
 </div>

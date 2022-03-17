@@ -68,7 +68,9 @@ export class WordcloudComponent extends OnDestroyClass implements OnInit {
       title: {
         text: ''
       },
-
+      credits: {
+        enabled: false
+      },
       series: [
         {
           name: 'menções',

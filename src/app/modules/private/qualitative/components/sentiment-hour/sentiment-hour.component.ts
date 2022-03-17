@@ -32,8 +32,11 @@ export class SentimentHourComponent implements OnChanges {
       title: {
         text: ''
       },
+      credits: {
+        enabled: false
+      },
       xAxis: {
-        categories: this.getCategories(Sentiment.positive),
+        categories: this.getCategories(),
         tickmarkPlacement: 'on',
         gridLineWidth: 1,
         title: {
@@ -76,7 +79,8 @@ export class SentimentHourComponent implements OnChanges {
         }
       },
 
-      series: [
+      series:
+      [
         {
           type: 'line',
           name: 'Positivas',
@@ -99,16 +103,24 @@ export class SentimentHourComponent implements OnChanges {
     };
   }
 
+
   getSeries(seriesType: Sentiment): any {
-    const seriesValue = this.sentimentByTime[seriesType];
-    return seriesValue.map((series: SentimentTime) => series.total);
+    const seriesValue = this.sentimentByTime;
+    let seriesValueArr: any = {
+      positive: [],
+      negative: [],
+      impartial: []
+    };
+    seriesValue.forEach((serie: SentimentTime) => {
+      seriesValueArr[seriesType].push(serie[seriesType]);
+    });
+    return seriesValueArr[seriesType];
   }
 
-  getCategories(seriesType: Sentiment): any {
-    const seriesValue = this.sentimentByTime[seriesType];
+  getCategories(): any {
+    const seriesValue = this.sentimentByTime;
     return seriesValue.map((series: SentimentTime) => {
-      const date = new Date(series.time);
-      return `${date.getDate()}/${date.getMonth() + 1} - ${date.getHours()} a ${date.getHours() + 2}h`;
+      return series.range;
     });
   }
 

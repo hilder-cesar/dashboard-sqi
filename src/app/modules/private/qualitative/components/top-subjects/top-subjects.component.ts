@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 // Chart
 import * as Highcharts from 'highcharts';
@@ -9,15 +9,17 @@ import { Sentiment } from 'src/app/utils/interfaces/sentiment.interface';
   templateUrl: './top-subjects.component.html',
   styleUrls: ['./top-subjects.component.scss']
 })
-export class TopSubjectsComponent implements OnInit {
+export class TopSubjectsComponent implements OnChanges {
 
   @Input() topSubjects!: any;
 
   Highcharts!: typeof Highcharts;
   chartOptions: Highcharts.Options = {};
 
-  ngOnInit(): void {
-    this.initChart();
+  ngOnChanges(simpleChanges: SimpleChanges): void {
+    if (simpleChanges.topSubjects.currentValue) {
+      this.initChart();
+    }
   }
 
   initChart(): void {
@@ -31,8 +33,8 @@ export class TopSubjectsComponent implements OnInit {
         text: ''
       },
       xAxis: {
-        categories: ['Coronavirus', 'João dória', 'Campanha política'],
-        height: 75,
+        categories: this.topSubjects.map((subject: any) => subject.name),
+        height: '100%',
         gridLineWidth: 0,
         lineWidth: 0,
         labels: {
@@ -55,6 +57,9 @@ export class TopSubjectsComponent implements OnInit {
             color: 'white'
           }
         }
+      },
+      credits: {
+        enabled: false
       },
       legend: {
         reversed: false,
@@ -80,19 +85,19 @@ export class TopSubjectsComponent implements OnInit {
         {
           type: 'bar',
           name: 'Positivos',
-          data: [5, 3, 4],
+          data: this.getSeries(Sentiment.positive),
           color: '#009245'
         },
         {
           type: 'bar',
           name: 'Negativos',
-          data: [2, 2, 3],
+          data: this.getSeries(Sentiment.negative),
           color: '#e91c13'
         },
         {
           type: 'bar',
           name: 'Neutras',
-          data: [3, 4, 4],
+          data: this.getSeries(Sentiment.impartial),
           color: '#f7c911'
         }
       ]
@@ -100,8 +105,16 @@ export class TopSubjectsComponent implements OnInit {
   }
 
   getSeries(seriesType: Sentiment): any {
-    const seriesValue = this.topSubjects[seriesType];
-    return seriesValue.map((series: any) => series.total);
+    const seriesValue = this.topSubjects;
+    let seriesValueArr: any = {
+      positive: [],
+      negative: [],
+      impartial: []
+    };
+    seriesValue.forEach((serie: any) => {
+      seriesValueArr[seriesType].push(serie[seriesType]);
+    });
+    return seriesValueArr[seriesType];
   }
 
   getCategories(seriesType: Sentiment): any {

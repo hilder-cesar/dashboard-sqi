@@ -16,6 +16,7 @@ export class QualitativeComponent extends OnDestroyClass {
 
   sentimentCount!: SentimentCountInterface;
   sentimentByTime!: SentimentByTime;
+  topSubjects!: any;
 
   constructor (
     private genericService: GenericService,
@@ -34,6 +35,7 @@ export class QualitativeComponent extends OnDestroyClass {
         const filterData = cloneDeep(this.filterService.filterData.getValue());
         this.getSentimentByTime(filterData);
         this.getSentiment(filterData);
+        this.getTopSubjects(filterData);
       });
   }
 
@@ -57,6 +59,20 @@ export class QualitativeComponent extends OnDestroyClass {
       .subscribe(
         (response: any) => {
           this.sentimentCount = response;
+          this.alert.closeAlert();
+        },
+        (error: any) => {
+          this.alert.showAlertError(error.message);
+        }
+      );
+  }
+
+  getTopSubjects(filterData: any): void {
+    this.genericService.post('subject/count', filterData)
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(
+        (response: any) => {
+          this.topSubjects = response;
           this.alert.closeAlert();
         },
         (error: any) => {

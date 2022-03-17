@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Sentiment, SentimentCountInterface } from 'src/app/utils/interfaces/sentiment.interface';
+import { SentimentCountInterface } from 'src/app/utils/interfaces/sentiment.interface';
 
 // Chart
 import * as Highcharts from 'highcharts';
@@ -29,12 +29,15 @@ export class SentimentComponent implements OnChanges {
 
   getPercentage(sentiment: string): number {
     this.totalValue = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
-    switch (sentiment) {
-      case 'impartial': return (100 * this.sentimentCount.impartial) / this.totalValue || 0;
-      case 'negative': return (100 * this.sentimentCount.negative) / this.totalValue || 0;
-      case 'positive': return (100 * this.sentimentCount.positive) / this.totalValue || 0;
-      default: return 0;
-    }
+    const sentimentRate = (): number => {
+      switch (sentiment) {
+        case 'impartial': return (100 * this.sentimentCount.impartial) / this.totalValue || 0;
+        case 'negative': return (100 * this.sentimentCount.negative) / this.totalValue || 0;
+        case 'positive': return (100 * this.sentimentCount.positive) / this.totalValue || 0;
+        default: return 0;
+      }
+    };
+    return Math.floor(sentimentRate());
   }
 
   initChart(): void {
@@ -44,6 +47,9 @@ export class SentimentComponent implements OnChanges {
         type: 'gauge',
         backgroundColor: 'transparent',
         height: '300px'
+      },
+      credits: {
+        enabled: false
       },
       pane: {
         center: ['50%', '100%'],
@@ -97,7 +103,7 @@ export class SentimentComponent implements OnChanges {
         }
       },
       series: [
-        { type: 'gauge', name: 'Sentimento', data: [1], dataLabels: { enabled: false } }
+        { type: 'gauge', name: 'Sentimento', data: [this.getSentimentScore()], dataLabels: { enabled: false } }
       ],
       responsive: {
         rules: [
@@ -143,6 +149,12 @@ export class SentimentComponent implements OnChanges {
         ]
       }
     };
+  }
+
+  getSentimentScore(): number {
+    const total = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
+    const medium = Object.values(this.sentimentCount).reduce((prev, current, index) => (index + 1) * current, 0);
+    return medium / total;
   }
 
 }

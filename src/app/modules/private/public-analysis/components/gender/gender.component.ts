@@ -1,17 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { getIcon, getColor } from 'src/app/utils/functions/gender.function';
 
 @Component({
   selector: 'app-gender',
   templateUrl: './gender.component.html',
   styleUrls: ['./gender.component.scss']
 })
-export class GenderComponent implements OnInit {
+export class GenderComponent {
+
+  getIcon = getIcon;
+  getColor = getColor;
 
   @Input() genderCount: any[] = [];
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
