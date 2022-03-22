@@ -1,4 +1,4 @@
-import { faBlogger, faFacebook, faFlickr, faGoogle, faInstagram, faTwitter, faWordpress, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faBlogger, faFacebook, faFlickr, faGoogle, faInstagram, faTwitter, faVimeo, faWordpress, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe, faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 export const getIcon = (socialNetwork: string): IconDefinition => {
@@ -12,6 +12,7 @@ export const getIcon = (socialNetwork: string): IconDefinition => {
     case 'YouTube': return faYoutube;
     case 'Google News': return faGoogle;
     case 'G1': return faGlobe;
+    case 'Vimeo': return faVimeo;
     default: return faQuestion;
   }
 };
@@ -27,6 +28,7 @@ export const getColor = (socialNetwork: string): string => {
     case 'YouTube': return '#FF0000';
     case 'Google News': return '#4285F4';
     case 'G1': return 'blue';
+    case 'Vimeo': return '#86c9ef';
     default: return 'white';
   }
 };

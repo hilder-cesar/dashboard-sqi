@@ -33,6 +33,8 @@ export class QualitativeComponent extends OnDestroyClass {
       .pipe(takeUntil(this.onDestroy), debounceTime(1000))
       .subscribe(() => {
         const filterData = cloneDeep(this.filterService.filterData.getValue());
+        filterData.startDate = filterData.startDate ? new Date(filterData?.startDate).toISOString() : null;
+        filterData.endDate = filterData.endDate ? new Date(filterData?.endDate + 'T23:59:59').toISOString() : null;
         this.getSentimentByTime(filterData);
         this.getSentiment(filterData);
         this.getTopSubjects(filterData);

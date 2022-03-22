@@ -120,7 +120,8 @@ export class SentimentHourComponent implements OnChanges {
   getCategories(): any {
     const seriesValue = this.sentimentByTime;
     return seriesValue.map((series: SentimentTime) => {
-      return series.range;
+      const date = new Date(series.dateString);
+      return series.range || `${date.getDay()}/${date.getMonth()+1} - ${date.getHours()}h - ${date.getHours() +2}h`;
     });
   }
 

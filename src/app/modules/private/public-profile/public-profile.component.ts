@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { cloneDeep } from 'lodash';
-import { debounceTime } from 'rxjs/internal/operators/debounceTime';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { OnDestroyClass } from 'src/app/utils/classes/on-destroy.class';
 import { getColor } from 'src/app/utils/functions/political-profile.function';
 
@@ -36,6 +35,8 @@ export class PublicProfileComponent extends OnDestroyClass implements OnInit {
       .pipe(takeUntil(this.onDestroy), debounceTime(1000))
       .subscribe(() => {
         const filterData = cloneDeep(this.filterService.filterData.getValue());
+        filterData.startDate = filterData.startDate ? new Date(filterData.startDate).toISOString() : null;
+        filterData.endDate = filterData.endDate ? new Date(filterData.endDate + 'T23:59:59').toISOString() : null;
         this.getPoliticalProfile(filterData);
       });
   }

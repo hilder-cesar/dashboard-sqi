@@ -25,6 +25,9 @@ export class WordcloudComponent extends OnDestroyClass implements OnInit {
   Highcharts!: typeof Highcharts;
   chartOptions: Highcharts.Options = {};
 
+  totalValue: number = 0;
+  wordCloudData: WordCloudInterface[] = [];
+
   constructor (
     private alert: AlertService,
     private genericService: GenericService,
@@ -43,13 +46,15 @@ export class WordcloudComponent extends OnDestroyClass implements OnInit {
       .subscribe(() => {
         const filterData = cloneDeep(this.filterService.filterData.getValue());
         filterData.startDate = filterData.startDate ? new Date(filterData.startDate).toISOString() : null;
-        filterData.endDate = filterData.endDate ? new Date(filterData.endDate + '23:59:59').toISOString() : null;
-        this.genericService.get('wordcloud')
+        filterData.endDate = filterData.endDate ? new Date(filterData.endDate + 'T23:59:59').toISOString() : null;
+        this.genericService.post('wordcloud', filterData)
           .pipe(takeUntil(this.onDestroy))
           .subscribe(
             (response: WordCloudInterface[]) => {
               this.alert.closeAlert();
-              this.initChart(response);
+              this.totalValue = response.reduce((prev, current) => prev + current.weight, 0);
+              const wordCloudData = cloneDeep(response);
+              this.initChart(wordCloudData);
             },
             (error: any) => {
               this.alert.showAlertError(error.message);
@@ -71,6 +76,11 @@ export class WordcloudComponent extends OnDestroyClass implements OnInit {
       credits: {
         enabled: false
       },
+      tooltip: {
+        formatter: function(){
+          return `${this.point.name}`
+        }
+      },
       series: [
         {
           name: 'menções',
@@ -78,7 +88,11 @@ export class WordcloudComponent extends OnDestroyClass implements OnInit {
           spiral: 'rectangular',
           placementStrategy: 'center',
           colors: ['white', '#23a8e0', '#97d042'],
-          data: wordCloudData
+          data: wordCloudData.map(word => {
+            word.weight = Math.ceil((100 * word.weight) / this.totalValue);
+            word.weight = word.weight > 3 ? 3 : word.weight;
+            return word;
+          })
         }
       ]
     };

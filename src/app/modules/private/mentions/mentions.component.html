@@ -2,15 +2,16 @@
 
 <div class="row">
   <div class="col-xl-3">
-    <h5>Publicações mais influentes</h5>
+    <h5>Publicações por rede</h5>
     <div class="list-wrapper">
 
-      <ng-container>
+      <ng-container *ngFor="let influencer of influencersList">
         <div class="influencer-wrapper my-4">
-          <img src="https://picsum.photos/75" alt="influencer-name" />
+          <fa-icon [icon]="getIcon(influencer.name)"></fa-icon>
+          <!-- <img src="https://picsum.photos/75" alt="influencer-name" /> -->
           <div class="influence-info">
             <div class="d-flex justify-content-between">
-              <p>1728</p> | <p>Facebook</p>
+              <p>{{influencer.name}}</p> | <p>{{influencer.total}}</p>
             </div>
             <div clasas="d-flex">
               <fa-icon [icon]="faFacebook"></fa-icon>

@@ -7,6 +7,7 @@ import { AlertService } from 'src/app/utils/services/alert/alert.service';
 import { FilterService } from 'src/app/utils/services/filter/filter.service';
 import { GenericService } from 'src/app/utils/services/generic/generic.service';
 import { cloneDeep } from 'lodash';
+import { getIcon } from 'src/app/utils/functions/mentions.functions';
 
 @Component({
   selector: 'app-mentions',
@@ -23,6 +24,9 @@ export class MentionsComponent extends OnDestroyClass implements OnInit {
 
   // mentions
   mentionsList: MentionsInterface[] = [];
+  influencersList: any[] = [];
+
+  getIcon = getIcon;
 
   constructor (
     private genericService: GenericService,
@@ -33,28 +37,47 @@ export class MentionsComponent extends OnDestroyClass implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMentions();
+    this.getData();
   }
 
-  getMentions(): void {
+  getData(): void {
     this.filterService.filterData
-    .pipe(takeUntil(this.onDestroy), debounceTime(1000))
-    .subscribe(() => {
-      const filterData = cloneDeep(this.filterService.filterData.getValue());
-      filterData.startDate = filterData.startDate ? new Date(filterData.startDate).toISOString() : null;
-      filterData.endDate = filterData.endDate ? new Date(filterData.endDate + '23:59:59').toISOString() : null;
-      this.genericService.post('feed', filterData)
-        .pipe(takeUntil(this.onDestroy))
-        .subscribe(
-          (response: MentionsInterface[]) => {
-            this.mentionsList = response;
-            this.alert.closeAlert();
-          },
-          (error: any) => {
-            this.alert.showAlertError(error.message);
-          }
-        );
-    });
+      .pipe(takeUntil(this.onDestroy), debounceTime(1000))
+      .subscribe(() => {
+        const filterData = cloneDeep(this.filterService.filterData.getValue());
+        filterData.startDate = filterData.startDate ? new Date(filterData.startDate).toISOString() : null;
+        filterData.endDate = filterData.endDate ? new Date(filterData.endDate + 'T23:59:59').toISOString() : null;
+        this.getMentions(filterData);
+        this.getInfluencers(filterData);
+      });
+  }
+
+  getMentions(filterData: any): void {
+    this.genericService.post('feed', filterData)
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(
+        (response: MentionsInterface[]) => {
+          this.mentionsList = response;
+          this.alert.closeAlert();
+        },
+        (error: any) => {
+          this.alert.showAlertError(error.message);
+        }
+      );
+  }
+
+  getInfluencers(filterData: any): void {
+    this.genericService.post('feed/influential', filterData)
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(
+        (response: MentionsInterface[]) => {
+          this.influencersList = response;
+          this.alert.closeAlert();
+        },
+        (error: any) => {
+          this.alert.showAlertError(error.message);
+        }
+      );
   }
 
 }

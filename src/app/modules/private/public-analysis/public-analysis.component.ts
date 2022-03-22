@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { cloneDeep } from 'lodash';
-import { debounceTime } from 'rxjs/internal/operators/debounceTime';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { OnDestroyClass } from 'src/app/utils/classes/on-destroy.class';
 import { AlertService } from 'src/app/utils/services/alert/alert.service';
 import { FilterService } from 'src/app/utils/services/filter/filter.service';
@@ -34,6 +33,8 @@ export class PublicAnalysisComponent extends OnDestroyClass implements OnInit {
       .pipe(takeUntil(this.onDestroy), debounceTime(1000))
       .subscribe(() => {
         const filterData = cloneDeep(this.filterService.filterData.getValue());
+        filterData.startDate = filterData.startDate ? new Date(filterData.startDate).toISOString() : null;
+        filterData.endDate = filterData.endDate ? new Date(filterData.endDate + 'T23:59:59').toISOString() : null;
         this.getGroupCount(filterData);
         this.getAgeCount(filterData);
         this.getNetworkCount(filterData);
