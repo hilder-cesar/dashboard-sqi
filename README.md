@@ -1,6 +1,6 @@
 # Dashboard Social QI
 
-Dashboard desenvolvida para o monitoramento de 
+# Dashboard desenvolvida para o monitoramento de 
 1. Público.
 2. Qualitativo.
 3. Perfil político.
@@ -8,7 +8,7 @@ Dashboard desenvolvida para o monitoramento de
 5. Dados por rede social, gênero e idade.
 6. Menções por filtro.
 
-##Angular CLI
+## Angular CLI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
 
