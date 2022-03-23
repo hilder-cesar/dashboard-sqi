@@ -1,4 +1,14 @@
-# DashboardSqi
+# Dashboard Social QI
+
+Dashboard desenvolvida para o monitoramento de 
+1. Público.
+2. Qualitativo.
+3. Perfil político.
+4. Wordcloud de palavras mais buscadas.
+5. Dados por rede social, gênero e idade.
+6. Menções por filtro.
+
+##Angular CLI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
 
