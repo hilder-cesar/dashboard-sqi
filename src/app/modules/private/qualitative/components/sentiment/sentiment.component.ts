@@ -28,7 +28,7 @@ export class SentimentComponent implements OnChanges {
   }
 
   getPercentage(sentiment: string): number {
-    this.totalValue = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
+    this.totalValue = Object.values(this.sentimentCount).reduce((prev, current) => prev + current, 0);
     const sentimentRate = (): number => {
       switch (sentiment) {
         case 'impartial': return (100 * this.sentimentCount.impartial) / this.totalValue || 0;
@@ -46,7 +46,7 @@ export class SentimentComponent implements OnChanges {
       chart: {
         type: 'gauge',
         backgroundColor: 'transparent',
-        height: '300px'
+        height: '300px',
       },
       credits: {
         enabled: false
@@ -86,7 +86,7 @@ export class SentimentComponent implements OnChanges {
           pivot: {
             borderWidth: 0,
             radius: 0
-          },
+          }
         }
       },
       title: {
@@ -154,7 +154,7 @@ export class SentimentComponent implements OnChanges {
   getSentimentScore(): number {
     const total = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
     const medium = Object.values(this.sentimentCount).reduce((prev, current, index) => (index + 1) * current, 0);
-    return medium / total;
+    return (medium / total) + 0.5;
   }
 
 }

@@ -1,3 +1,17 @@
-@import 'config/mixins.scss';
-@import 'config/vars.scss';
-@import 'config/media-queries.scss';
+@import "config/mixins.scss";
+@import "config/vars.scss";
+@import "config/media-queries.scss";
+
+::ng-deep {
+  h5 {
+    text-align: center !important;
+    text-transform: uppercase;
+    @include fonte($color-white, "myriad-pro", 1rem, 300);
+  }
+}
+.section-wrapper {
+  padding: 20px;
+  margin: 8px;
+  background: rgba($color-blue-light, 0.1);
+  @include border-radius(1rem);
+}

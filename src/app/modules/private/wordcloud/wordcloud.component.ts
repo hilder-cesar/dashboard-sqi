@@ -68,6 +68,7 @@ export class WordcloudComponent extends OnDestroyClass implements OnInit {
     this.chartOptions = {
       chart: {
         type: 'wordcloud',
+        height: 700,
         backgroundColor: 'transparent'
       },
       title: {

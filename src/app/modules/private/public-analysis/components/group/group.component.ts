@@ -37,25 +37,33 @@ export class GroupComponent implements OnChanges {
       xAxis: {
         categories: this.groupCount.map((group: any) => group.name),
         tickmarkPlacement: 'on',
-        gridLineWidth: 1,
+        gridLineWidth: 0,
+        gridLineColor: '#9cb4d8',
+        lineColor: '#9cb4d8',
         title: {
           text: ''
         },
         labels: {
+          useHTML: true,
           style: {
-            color: 'white'
+            color: 'white',
+            textTransform: "uppercase",
           }
         }
       },
       yAxis: {
         tickmarkPlacement: 'on',
-        gridLineWidth: 0,
+        gridLineWidth: 1,
+        gridLineColor: '#9cb4d8',
+        lineColor: '#9cb4d8',
         title: {
           text: ''
         },
         labels: {
+          useHTML: true,
           style: {
-            color: 'white'
+            color: 'white',
+            textTransform: "uppercase",
           }
         }
       },
@@ -66,19 +74,18 @@ export class GroupComponent implements OnChanges {
         }
       },
       plotOptions: {
-        line: {
-          allAreas: true,
-          color: 'white',
-          lineWidth: 5,
-          borderWidth: 1,
-          label: {
-            style: {
-              color: 'white'
-            }
-          }
+        bar: {
+          borderColor: 'transparent',
+          color: {
+            linearGradient: { x1: 1, y1: 1, x2: 1, y2: 0 },
+            stops: [
+              [0, '#fd4a95'],
+              [0.5, '#fd4a95'],
+              [1, '#ff9954']
+            ]
+          },
         }
       },
-
       series: [{
         type: 'bar',
         name: 'Total',

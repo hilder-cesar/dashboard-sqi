@@ -49,7 +49,9 @@ export class AgeComponent implements OnChanges {
       },
       yAxis: {
         tickmarkPlacement: 'on',
-        gridLineWidth: 0,
+        gridLineWidth: 1,
+        gridLineDashStyle: 'Dash',
+        gridLineColor: 'rgba(255,255,255, .3',
         title: {
           text: ''
         },
@@ -60,30 +62,59 @@ export class AgeComponent implements OnChanges {
         }
       },
       legend: {
-        enabled: false,
+        enabled: true,
+        align: 'right',
+        layout: 'horizontal',
+        squareSymbol: true,
+        symbolRadius: 0,
         itemStyle: {
           color: 'white'
         }
       },
       plotOptions: {
-        line: {
-          allAreas: true,
-          color: 'white',
-          lineWidth: 5,
-          borderWidth: 1,
-          label: {
-            style: {
-              color: 'white'
-            }
-          }
+        column: {
+          borderColor: 'transparent',
         }
       },
-
-      series: [{
-        type: 'column',
-        name: 'Total',
-        data: this.ageCount.map((age:any) => age.total)
-      }]
+      series: [
+        {
+          type: 'column',
+          name: 'FEMININO',
+          color: {
+            linearGradient: { x1: 1, y1: 1, x2: 1, y2: 0 },
+            stops: [
+              [0, '#fd4a95'],
+              [0.5, '#fd4a95'],
+              [1, '#ff9954']
+            ]
+          },
+          data: this.ageCount.map((age: any) => age.total)
+        },
+        {
+          type: 'column',
+          name: 'TOTAL',
+          color: {
+            linearGradient: { x1: 1, y1: 1, x2: 1, y2: 0 },
+            stops: [
+              [0, '#494be1'],
+              [1, '#ff6de8']
+            ]
+          },
+          data: this.ageCount.map((age: any) => age.total)
+        },
+        {
+          type: 'column',
+          name: 'MASCULINO',
+          color: {
+            linearGradient: { x1: 1, y1: 1, x2: 1, y2: 0 },
+            stops: [
+              [0, '#38a0ee'],
+              [1, '#8356ee']
+            ]
+          },
+          data: this.ageCount.map((age: any) => age.total)
+        }
+      ]
     };
   }
 }

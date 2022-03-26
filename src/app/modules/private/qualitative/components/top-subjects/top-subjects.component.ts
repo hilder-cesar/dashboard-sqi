@@ -32,6 +32,9 @@ export class TopSubjectsComponent implements OnChanges {
       title: {
         text: ''
       },
+      tooltip: {
+        enabled: false
+      },
       xAxis: {
         categories: this.topSubjects.map((subject: any) => subject.name),
         height: '100%',
@@ -84,13 +87,13 @@ export class TopSubjectsComponent implements OnChanges {
       series: [
         {
           type: 'bar',
-          name: 'Positivos',
+          name: 'Positivas',
           data: this.getSeries(Sentiment.positive),
           color: '#009245'
         },
         {
           type: 'bar',
-          name: 'Negativos',
+          name: 'Negativas',
           data: this.getSeries(Sentiment.negative),
           color: '#e91c13'
         },

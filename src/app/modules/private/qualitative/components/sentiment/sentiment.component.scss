@@ -1,6 +1,7 @@
 @import "src/sass/import";
 
 .total {
+  text-align: center;
   @include fonte($color-blue-light, "myriad-pro", 45px, 700);
 }
 

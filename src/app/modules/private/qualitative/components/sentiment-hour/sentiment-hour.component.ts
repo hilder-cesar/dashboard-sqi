@@ -28,12 +28,16 @@ export class SentimentHourComponent implements OnChanges {
       chart: {
         type: 'line',
         backgroundColor: 'transparent',
+        height: 500
       },
       title: {
         text: ''
       },
       credits: {
         enabled: false
+      },
+      tooltip: {
+        enabled: true
       },
       xAxis: {
         categories: this.getCategories(),
@@ -43,6 +47,7 @@ export class SentimentHourComponent implements OnChanges {
           text: ''
         },
         labels: {
+          enabled: true,
           style: {
             color: 'white'
           }
@@ -61,6 +66,7 @@ export class SentimentHourComponent implements OnChanges {
         }
       },
       legend: {
+        enabled: false,
         itemStyle: {
           color: 'white'
         }
@@ -71,6 +77,9 @@ export class SentimentHourComponent implements OnChanges {
           color: 'white',
           lineWidth: 5,
           borderWidth: 1,
+          dataLabels: {
+            enabled: false,
+          },
           label: {
             style: {
               color: 'white'
@@ -80,26 +89,14 @@ export class SentimentHourComponent implements OnChanges {
       },
 
       series:
-      [
-        {
-          type: 'line',
-          name: 'Positivas',
-          data: this.getSeries(Sentiment.positive),
-          color: '#009245'
-        },
-        {
-          type: 'line',
-          name: 'Negativos',
-          data: this.getSeries(Sentiment.negative),
-          color: '#e91c13'
-        },
-        {
-          type: 'line',
-          name: 'Neutras',
-          data: this.getSeries(Sentiment.impartial),
-          color: '#f7c911'
-        }
-      ]
+        [
+          {
+            type: 'line',
+            name: 'Total',
+            data: this.sentimentByTime.map((sentiment:any) => sentiment.total),
+            color: '#009245'
+          }
+        ]
     };
   }
 
@@ -121,7 +118,7 @@ export class SentimentHourComponent implements OnChanges {
     const seriesValue = this.sentimentByTime;
     return seriesValue.map((series: SentimentTime) => {
       const date = new Date(series.dateString);
-      return series.range || `${date.getDay()}/${date.getMonth()+1} - ${date.getHours()}h - ${date.getHours() +2}h`;
+      return series.range || `${date.getDay()}/${date.getMonth() + 1}`;
     });
   }
 

@@ -4,7 +4,7 @@
   <ng-container *ngFor="let socialNetwork of socialNetworkCount">
     <div class="col-xl-3 d-flex flex-column align-items-center">
       <fa-icon [ngStyle]="{'color': getColor(socialNetwork.name)}" [icon]="getIcon(socialNetwork.name)"></fa-icon>
-      <p>{{socialNetwork.total | number}}</p>
+      <p>{{ getPercentage(socialNetwork.total) | number}}%</p>
     </div>
   </ng-container>
 </div>
