@@ -6,11 +6,15 @@ import { InsightsRoutingModule } from './insights-routing.module';
 
 // Container
 import { InsightsComponent } from './insights.component';
+import { FollowersGrowthComponent } from './followers-growth/followers-growth.component';
+import { InteractionsComponent } from './interactions/interactions.component';
 
 
 @NgModule({
   declarations: [
-    InsightsComponent
+    InsightsComponent,
+    FollowersGrowthComponent,
+    InteractionsComponent
   ],
   imports: [
     CommonModule,
