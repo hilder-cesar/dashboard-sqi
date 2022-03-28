@@ -33,7 +33,6 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
       subjects: [[]],
       age: [[]],
       groups: [[]],
-      checked: [true],
       limit: [10],
       author: [''],
       content: ['']

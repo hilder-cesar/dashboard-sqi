@@ -56,7 +56,7 @@ export class QualitativeComponent extends OnDestroyClass {
   }
 
   getSentiment(filterData: any): void {
-    this.genericService.post('sentiment/count', filterData)
+    this.genericService.post('sentiment/count', { checked: true, ...filterData})
       .pipe(takeUntil(this.onDestroy))
       .subscribe(
         (response: any) => {

@@ -154,7 +154,7 @@ export class SentimentComponent implements OnChanges {
   getSentimentScore(): number {
     const total = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
     const medium = Object.values(this.sentimentCount).reduce((prev, current, index) => (index + 1) * current, 0);
-    return medium / total;
+    return (medium / total) + 0.5;
   }
 
 }
