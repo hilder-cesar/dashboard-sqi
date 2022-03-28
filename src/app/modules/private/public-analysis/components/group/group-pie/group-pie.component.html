@@ -1,0 +1,12 @@
+<p class="pie-group text-center">
+  {{ groupNumber.name }}
+</p>
+
+<highcharts-chart *ngIf="Highcharts" [Highcharts]="Highcharts" [options]="chartOptions"
+  style="width: 100%; display: block;">
+</highcharts-chart>
+
+<p class="pie-total text-center">
+  {{ groupNumber.total }} <br />
+  <span>PESSOAS</span>
+</p>

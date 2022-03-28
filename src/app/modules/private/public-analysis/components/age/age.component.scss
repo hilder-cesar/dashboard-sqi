@@ -1,0 +1,9 @@
+@import "src/sass/import";
+
+::ng-deep{
+  .styled{
+    width: 50px;
+    height: 50px;
+    @include border-radius(50%);
+  }
+}

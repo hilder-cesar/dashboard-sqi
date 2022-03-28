@@ -14,6 +14,7 @@ import { GroupComponent } from './components/group/group.component';
 import { NetworkComponent } from './components/social-network/social-network.component';
 import { GenderComponent } from './components/gender/gender.component';
 import { AgeComponent } from './components/age/age.component';
+import { GroupPieComponent } from './components/group/group-pie/group-pie.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AgeComponent } from './components/age/age.component';
     GroupComponent,
     NetworkComponent,
     GenderComponent,
-    AgeComponent
+    AgeComponent,
+    GroupPieComponent
   ],
   imports: [
     CommonModule,

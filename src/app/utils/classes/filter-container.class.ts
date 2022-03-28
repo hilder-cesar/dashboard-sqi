@@ -74,7 +74,7 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
   }
 
   parseDate(): string {
-    return this.startDate.value && this.endDate.value ? `${this.startDate.value} a ${this.endDate.value}` : 'Selecione as datas';
+    return this.startDate.value && this.endDate.value ? `${this.startDate.value} a ${this.endDate.value}` : 'DATA';
   }
 
   isHovered(date: NgbDate): any {

@@ -10,6 +10,7 @@ export class GenderComponent implements OnChanges {
 
   getIcon = getIcon;
   getColor = getColor;
+  iconCount: number = 25;
 
   totalValue: number = 0;
 
@@ -23,6 +24,11 @@ export class GenderComponent implements OnChanges {
 
   getPercentage(value: number): number {
     return Math.ceil((100 * value) / this.totalValue);
+  }
+
+  getIconPaint(value: number): number {
+    const number = this.getPercentage(value);
+    return (number / 100) * this.iconCount;
   }
 
 }

@@ -1,9 +1,11 @@
 <h5>Redes</h5>
 
-<div class="row">
+<div class="row justify-content-center">
   <ng-container *ngFor="let socialNetwork of socialNetworkCount">
-    <div class="col-xl-3 d-flex flex-column align-items-center">
-      <fa-icon [ngStyle]="{'color': getColor(socialNetwork.name)}" [icon]="getIcon(socialNetwork.name)"></fa-icon>
+    <div class="socialWrapper">
+      <div class="roundedDiv" [ngClass]="{'disabled': getPercentage(socialNetwork.total) === 0}">
+        <fa-icon [icon]="getIcon(socialNetwork.name)"></fa-icon>
+      </div>
       <p>{{ getPercentage(socialNetwork.total) | number}}%</p>
     </div>
   </ng-container>

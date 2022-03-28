@@ -1,10 +1,16 @@
 <h5>Gênero</h5>
 
 <div class="row">
-  <ng-container *ngFor="let gender of genderCount">
-    <div class="col-xl-3 d-flex flex-column align-items-center">
-      <fa-icon [ngStyle]="{ 'color': getColor(gender.name) }" [icon]="getIcon(gender.name)"></fa-icon>
-      <h5>{{ gender.name }} </h5>
+  <ng-container *ngFor="let gender of genderCount;">
+    <div class="col-xl-3 text-center">
+      <div class="row justify-content-center">
+        <fa-icon class="column-5 my-1" 
+          [ngClass]="{'painted': getIconPaint(gender.total) > index  }"
+          [icon]="getIcon(gender.name)" 
+          *ngFor="let icon of [].constructor(iconCount); let index=index;">
+        </fa-icon>
+      </div>
+      <h5 class="my-3">{{ gender.name }} </h5>
       {{ getPercentage(gender.total) | number:'1.0-0'}}%
     </div>
   </ng-container>

@@ -1,9 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import url("https://use.typekit.net/zof1yuw.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "~bootstrap/scss/bootstrap";
+@import "src/sass/import";
 
 * {
-  font-family: myriad-pro;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-control {
+  position: relative;
+  text-transform: uppercase;
+  background: #a1a1a1 !important;
+  border: none;
+  @include fonte($color-white, "Poppins", 1rem, normal);
+  @include border-radius(2rem);
+  &::placeholder {
+    text-transform: uppercase;
+    @include fonte($color-white, "Poppins", 1rem, normal);
+  }
+  &[readonly]::placeholder {
+    text-transform: uppercase;
+    @include fonte($color-white, "Poppins", 1rem, normal);
+  }
 }

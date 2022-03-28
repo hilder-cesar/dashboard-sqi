@@ -1,10 +1,10 @@
-import { faFemale, faMale, faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faFemale, faMale, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 export const getIcon = (gender: string): IconDefinition => {
   switch (gender) {
     case 'Masculino': return faMale;
     case 'Feminino': return faFemale;
-    default: return faQuestion;
+    default: return faCircle;
   }
 };
 

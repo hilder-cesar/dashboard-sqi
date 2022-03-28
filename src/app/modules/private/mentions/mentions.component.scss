@@ -34,7 +34,7 @@
   .influence-info {
     width: 100%;
     padding: 0 1rem;
-    @include fonte($color-white, "myriad-pro", 1.5rem, bold);
+    @include fonte($color-white, "Poppins", 1.5rem, bold);
     p {
       margin: 0;
     }
@@ -58,10 +58,10 @@
     width: 100%;
     padding: 0 1rem;
     span {
-      @include fonte(rgba($color-white, 0.6), "myriad-pro", 1rem, bold);
+      @include fonte(rgba($color-white, 0.6), "Poppins", 1rem, bold);
     }
     p {
-      @include fonte($color-white, "myriad-pro", 1rem, bold);
+      @include fonte($color-white, "Poppins", 1rem, bold);
       margin: 0;
     }
   }

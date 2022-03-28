@@ -25,11 +25,15 @@ export class AgeComponent implements OnChanges {
     this.Highcharts = Highcharts;
     this.chartOptions = {
       chart: {
-        type: 'column',
+        type: 'spline',
         backgroundColor: 'transparent',
+        height: '80%'
       },
       title: {
         text: ''
+      },
+      tooltip: {
+        enabled: false
       },
       credits: {
         enabled: false
@@ -37,7 +41,8 @@ export class AgeComponent implements OnChanges {
       xAxis: {
         categories: this.ageCount.map((age: any) => age.name),
         tickmarkPlacement: 'on',
-        gridLineWidth: 1,
+        gridLineWidth: 0,
+        gridLineInterpolation: 'circle',
         title: {
           text: ''
         },
@@ -51,7 +56,7 @@ export class AgeComponent implements OnChanges {
         tickmarkPlacement: 'on',
         gridLineWidth: 1,
         gridLineDashStyle: 'Dash',
-        gridLineColor: 'rgba(255,255,255, .3',
+        gridLineColor: 'rgba(255,255,255, .04)',
         title: {
           text: ''
         },
@@ -62,54 +67,35 @@ export class AgeComponent implements OnChanges {
         }
       },
       legend: {
-        enabled: true,
-        align: 'right',
-        layout: 'horizontal',
-        squareSymbol: true,
-        symbolRadius: 0,
-        itemStyle: {
-          color: 'white'
-        }
+        enabled: false
       },
       plotOptions: {
-        column: {
+        spline: {
           borderColor: 'transparent',
+          dataLabels: {
+            enabled: true,
+            useHTML: true,
+            position: 'center',
+            align: 'center',
+            padding: 10,
+            y: -10,
+            borderRadius: 50,
+            borderColor: 'white',
+            color: 'white',
+            borderWidth: 1,
+          }
         }
       },
       series: [
         {
-          type: 'column',
-          name: 'FEMININO',
+          type: 'spline',
+          name: 'Total',
           color: {
-            linearGradient: { x1: 1, y1: 1, x2: 1, y2: 0 },
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
             stops: [
-              [0, '#fd4a95'],
-              [0.5, '#fd4a95'],
-              [1, '#ff9954']
-            ]
-          },
-          data: this.ageCount.map((age: any) => age.total)
-        },
-        {
-          type: 'column',
-          name: 'TOTAL',
-          color: {
-            linearGradient: { x1: 1, y1: 1, x2: 1, y2: 0 },
-            stops: [
-              [0, '#494be1'],
-              [1, '#ff6de8']
-            ]
-          },
-          data: this.ageCount.map((age: any) => age.total)
-        },
-        {
-          type: 'column',
-          name: 'MASCULINO',
-          color: {
-            linearGradient: { x1: 1, y1: 1, x2: 1, y2: 0 },
-            stops: [
-              [0, '#38a0ee'],
-              [1, '#8356ee']
+              [0, '#f2ca30'],
+              [0.3, '#f2ca30'],
+              [1, '#ff7619']
             ]
           },
           data: this.ageCount.map((age: any) => age.total)

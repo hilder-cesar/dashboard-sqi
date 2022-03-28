@@ -6,12 +6,27 @@
   h5 {
     text-align: center !important;
     text-transform: uppercase;
-    @include fonte($color-white, "myriad-pro", 1rem, 300);
+    @include fonte($color-white, "Poppins", 1rem, 300);
   }
 }
 .section-wrapper {
   padding: 20px;
   margin: 8px;
   background: rgba($color-blue-light, 0.1);
+  height: calc(100% - 20px);
   @include border-radius(1rem);
+}
+
+h2 {
+  padding: 2px;
+  text-align: center;
+  width: 100%;
+  background: rgba($grey-background, 0.3);
+  @include border-radius(2rem);
+  @include fonte($color-white, "Poppins", 1rem, bold);
+}
+
+.column-5 {
+  flex: 1 0 18% !important;
+  max-width: 18%;
 }

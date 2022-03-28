@@ -1,5 +1,9 @@
 <h5>Grupo</h5>
 
-<highcharts-chart *ngIf="Highcharts" [Highcharts]="Highcharts" [options]="chartOptions"
-  style="width: 100%; display: block;">
-</highcharts-chart>
+<div class="row justify-content-center">
+  <ng-container *ngFor="let group of groupCount; let index = index;">
+    <div class="col-xl-3 my-3" [ngClass]="{'column-5': index < 5}">
+      <app-group-pie [groupNumber]="group" [totalCount]="totalCount"></app-group-pie>
+    </div>
+  </ng-container>
+</div>
