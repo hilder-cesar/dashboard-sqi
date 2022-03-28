@@ -2,23 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Modules
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { InsightsRoutingModule } from './insights-routing.module';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 // Container
 import { InsightsComponent } from './insights.component';
-import { FollowersGrowthComponent } from './followers-growth/followers-growth.component';
-import { InteractionsComponent } from './interactions/interactions.component';
-
 
 @NgModule({
   declarations: [
-    InsightsComponent,
-    FollowersGrowthComponent,
-    InteractionsComponent
+    InsightsComponent
   ],
   imports: [
     CommonModule,
-    InsightsRoutingModule
+    InsightsRoutingModule,
+    HighchartsChartModule,
+    SharedModule
   ]
 })
 export class InsightsModule { }
