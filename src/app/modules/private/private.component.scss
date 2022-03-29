@@ -6,6 +6,10 @@
     right: 0 !important;
     left: initial !important;
   }
+  .dropdown-menu {
+    background: rgba($color-black, 0.9);
+    @include fonte($color-white, "Poppins", 1rem, normal);
+  }
 }
 .private-wrapper {
   min-height: 100vh;
@@ -16,7 +20,7 @@
 
   .header-wrapper {
     @include flexbox(flex, row, wrap, space-around, center, center);
-  
+
     .date {
       width: 0;
       height: 0;
@@ -44,9 +48,17 @@
       @include border-radius(50px);
       @include flexbox(flex, row, wrap, center, center, center);
 
+      .dropdown-item {
+        color: $color-white !important;
+        &:hover {
+          background: $color-white;
+          color: $color-black !important;
+        }
+      }
+
       fa-icon {
         font-size: 1.5rem;
-        color: $color-black;
+        color: $color-white;
         cursor: pointer;
       }
 
@@ -75,15 +87,15 @@
   width: 2rem;
 }
 .custom-day.focused {
-  background-color: $color-blue-bold;
+  background: $yellow-gradient !important;
 }
 .custom-day.range,
 .custom-day:hover {
-  background-color: $color-blue-bold;
+  background: $yellow-gradient;
   color: white;
 }
 .custom-day.faded {
-  background-color: rgba($color-blue-bold, 0.5);
+  background: $yellow-gradient;
 }
 ::ng-deep {
   ngb-datepicker {
@@ -105,7 +117,7 @@
     padding: 15px;
   }
   .ngb-dp-header {
-    background: white !important;
+    background: rgba($color-black, 0.9) !important;
     .btn-link {
       color: black !important;
       font-size: 14px !important;
@@ -120,15 +132,15 @@
     font-weight: bold;
     font-size: 14px !important;
     text-transform: capitalize;
-    background: white !important;
+    background: rgba($color-black, 0.9) !important;
   }
   .ngb-dp-weekdays {
     justify-content: space-around;
-    background: $color-white !important;
-    color: $color-blue-bold;
+    background: rgba($color-black, 0.9) !important;
+    color: $color-white;
     .ngb-dp-weekday {
-      background: $color-white;
-      color: $color-blue-bold;
+      background: rgba($color-black, 0.9);
+      color: $color-white;
     }
   }
 }

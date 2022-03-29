@@ -2,6 +2,7 @@ export interface SentimentCountInterface {
   impartial: number,
   negative: number;
   positive: number;
+  unqualified: number;
 }
 
 export interface SentimentTime {
@@ -23,5 +24,6 @@ export interface SentimentByTime {
 export enum Sentiment {
   positive = 'positive', 
   negative = 'negative', 
-  impartial = 'impartial'
+  impartial = 'impartial',
+  unqualified = 'unqualified'
 }

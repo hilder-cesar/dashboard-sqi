@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { PublicAnalysisRoutingModule } from './public-analysis-routing.module';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Container
 import { PublicAnalysisComponent } from './public-analysis.component';
@@ -30,7 +31,8 @@ import { GroupPieComponent } from './components/group/group-pie/group-pie.compon
     CommonModule,
     PublicAnalysisRoutingModule,
     HighchartsChartModule,
-    SharedModule
+    SharedModule,
+    NgbTooltipModule
   ]
 })
 export class PublicAnalysisModule { }

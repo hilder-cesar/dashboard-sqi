@@ -70,14 +70,14 @@
           <div ngbDropdown>
             <input placeholder="Rede" class="form-control" id="networkDropdown" ngbDropdownToggle readonly />
             <div class="p-4" ngbDropdownMenu aria-labelledby="networkDropdown">
-              <!-- <ng-container *ngFor="let age of ageList">
+              <ng-container *ngFor="let socialNetwork of socialNetworkList">
                 <div class="d-flex align-items-center mr-3">
-                  <input [id]="age.name" type="checkbox" class="mr-2"
-                    [checked]="selectionChecked({ name: 'age', value: age.name })"
-                    (change)="selectionChange($event, { name: 'age', value: age.name })" />
-                  <label [for]="age.name" class="mb-0">{{age.name}}</label>
+                  <input [id]="socialNetwork.name" type="checkbox" class="mr-2"
+                    [checked]="selectionChecked({ name: 'socialNetwork', value: socialNetwork.name })"
+                    (change)="selectionChange($event, { name: 'age', value: socialNetwork.name })" />
+                  <label [for]="socialNetwork.name" class="mb-0">{{socialNetwork.name}}</label>
                 </div>
-              </ng-container> -->
+              </ng-container>
             </div>
           </div>
         </div>
