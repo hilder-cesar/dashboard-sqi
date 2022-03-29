@@ -35,7 +35,7 @@ export class PropertyDataComponent extends OnDestroyClass implements OnInit {
   }
 
   getFollowersGrowth(filterData: any): void {
-    this.genericService.post('insights/growth-followers/last-week', filterData)
+    this.genericService.post('proprietary-data/growth-followers/last-week', filterData)
       .pipe(takeUntil(this.onDestroy))
       .subscribe(
         (response: any) => {
@@ -49,7 +49,7 @@ export class PropertyDataComponent extends OnDestroyClass implements OnInit {
   }
 
   getInteractions(filterData: any): void {
-    this.genericService.post('insights/interactions/last-week', filterData)
+    this.genericService.post('proprietary-data/interactions/last-week', filterData)
       .pipe(takeUntil(this.onDestroy))
       .subscribe(
         (response: any) => {

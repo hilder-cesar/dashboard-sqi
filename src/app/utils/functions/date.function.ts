@@ -12,6 +12,10 @@ export const nowToMs = () => {
   return DateTime.now().setZone('utc').toMillis();
 };
 
+export const dateToFormat = (date: number, format: string): string => {
+  return DateTime.fromMillis(date).toFormat(format);
+};
+
 export const dateToString = (date: null | number): null | string => {
   return date ? DateTime.fromSeconds(date, { zone: 'utc' }).toFormat('yyyy-MM-dd') : null;
 };
