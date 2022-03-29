@@ -57,6 +57,7 @@ export class PrivateComponent extends FilterContainerClass {
         this.filterData.subjects = params.subjects !== undefined ? this.handleParam(params.subjects) : this.filterForm.value.subjects;
         this.filterData.groups = params.groups !== undefined ? this.handleParam(params.groups) : this.filterForm.value.groups;
         this.filterData.sentiment = params.sentiment !== undefined ? this.handleParam(params.sentiment) : this.filterForm.value.sentiment;
+        this.filterData.content = params.content !== undefined ? this.handleParam(params.content) : this.filterForm.value.content;
         this.filterData.checked = true;
         this.filterForm.patchValue(this.filterData);
         this.filterService.filterData.next(this.filterForm.value);
