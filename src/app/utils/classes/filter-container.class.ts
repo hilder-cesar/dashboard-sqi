@@ -36,7 +36,8 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
       checked: [true],
       limit: [10],
       author: [''],
-      content: ['']
+      content: [''],
+      sentiment: ['']
     });
 
     this.filterForm.valueChanges

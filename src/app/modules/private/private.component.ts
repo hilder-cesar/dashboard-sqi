@@ -27,11 +27,7 @@ export class PrivateComponent extends FilterContainerClass {
   socialNetworkList: any[] = [];
   groupList: any[] = [];
   positioningList: any[] = [];
-  sentimentList: any[] = [
-    { name: 'Positivo' },
-    { name: 'Negativo' },
-    { name: 'Neutro' }
-  ];
+  sentimentList: any[] = [];
 
   constructor (
     protected formBuilder: FormBuilder,
@@ -60,6 +56,7 @@ export class PrivateComponent extends FilterContainerClass {
         this.filterData.mentions = params.mentions !== undefined ? this.handleParam(params.mentions) : this.filterForm.value.mentions;
         this.filterData.subjects = params.subjects !== undefined ? this.handleParam(params.subjects) : this.filterForm.value.subjects;
         this.filterData.groups = params.groups !== undefined ? this.handleParam(params.groups) : this.filterForm.value.groups;
+        this.filterData.sentiment = params.sentiment !== undefined ? this.handleParam(params.sentiment) : this.filterForm.value.sentiment;
         this.filterData.checked = true;
         this.filterForm.patchValue(this.filterData);
         this.filterService.filterData.next(this.filterForm.value);
@@ -71,6 +68,7 @@ export class PrivateComponent extends FilterContainerClass {
     this.getGenders();
     this.getAgeList();
     this.getPoliticalPos();
+    this.getSentiment();
   }
 
   selectionChange(event: Event, value: any): void {
@@ -171,6 +169,20 @@ export class PrivateComponent extends FilterContainerClass {
           this.alert.showAlertError(error.message);
         }
       );
+  }
+
+  getSentiment(): void {
+    this.genericService.get('sentiment')
+    .pipe(takeUntil(this.onDestroy))
+    .subscribe(
+      (response: any) => {
+        this.sentimentList = response;
+        this.alert.closeAlert();
+      },
+      (error: any) => {
+        this.alert.showAlertError(error.message);
+      }
+    );
   }
 
 

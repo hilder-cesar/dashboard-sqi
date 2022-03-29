@@ -87,14 +87,14 @@
           <div ngbDropdown>
             <input placeholder="Sentimento" class="form-control" id="sentimentDropdown" ngbDropdownToggle readonly />
             <div class="p-4" ngbDropdownMenu aria-labelledby="sentimentDropdown">
-              <!-- <ng-container *ngFor="let age of ageList">
+              <ng-container *ngFor="let sentiment of sentimentList">
                 <div class="d-flex align-items-center mr-3">
-                  <input [id]="age.name" type="checkbox" class="mr-2"
-                    [checked]="selectionChecked({ name: 'age', value: age.name })"
-                    (change)="selectionChange($event, { name: 'age', value: age.name })" />
-                  <label [for]="age.name" class="mb-0">{{age.name}}</label>
+                  <input [id]="sentiment.name" type="checkbox" class="mr-2"
+                    [checked]="selectionChecked({ name: 'sentiment', value: sentiment.name })"
+                    (change)="selectionChange($event, { name: 'sentiment', value: sentiment.name })" />
+                  <label [for]="sentiment.name" class="mb-0">{{sentiment.name}}</label>
                 </div>
-              </ng-container> -->
+              </ng-container>
             </div>
           </div>
         </div>

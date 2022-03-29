@@ -17,7 +17,6 @@ export class GroupPieComponent implements OnChanges {
   ngOnChanges(simpleChanges: SimpleChanges): void {
     if (simpleChanges.groupNumber.currentValue) {
       this.initChart();
-      console.log((100 * this.groupNumber.total) / this.totalCount);
     }
   }
 
