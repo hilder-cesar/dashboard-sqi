@@ -1,7 +1,7 @@
 import { faBlogger, faFacebook, faFlickr, faGoogle, faInstagram, faTwitter, faVimeo, faWordpress, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe, faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
-export const getIcon = (socialNetwork: string): IconDefinition => {
+export const getSocialNetworkIcon = (socialNetwork: string): IconDefinition => {
   switch (socialNetwork) {
     case 'Twitter': return faTwitter;
     case 'Instagram': return faInstagram;

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { getIcon, getColor } from 'src/app/utils/functions/gender.function';
+import { getGenderIcon, getColor } from 'src/app/utils/functions/gender.function';
 
 @Component({
   selector: 'app-gender',
@@ -8,7 +8,7 @@ import { getIcon, getColor } from 'src/app/utils/functions/gender.function';
 })
 export class GenderComponent implements OnChanges {
 
-  getIcon = getIcon;
+  getIcon = getGenderIcon;
   getColor = getColor;
   iconCount: number = 25;
 

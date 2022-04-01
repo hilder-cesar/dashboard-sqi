@@ -10,10 +10,13 @@
   font-family: "Poppins", sans-serif;
 }
 
+.filterBtn,
 .form-control {
+  min-width: max-content;
+  padding: 8px 12px;
   position: relative;
   text-transform: uppercase;
-  background: #a1a1a1 !important;
+  background: $grey-background !important;
   border: none;
   @include fonte($color-white, "Poppins", 1rem, normal);
   @include border-radius(2rem);
@@ -24,5 +27,34 @@
   &[readonly]::placeholder {
     text-transform: uppercase;
     @include fonte($color-white, "Poppins", 1rem, normal);
+  }
+
+  // &.open {
+  //   @include border-radius(20px 20px 0 0);
+  // }
+}
+
+.filter-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  width: 100%;
+  @include fonte($color-grey-light, "Poppins", 1rem, bold);
+  @include flexbox(flex, flex, nowrap, flex-start, center, center);
+  label {
+    cursor: pointer;
+    fa-icon {
+      margin-right: 8px;
+    }
+  }
+  &:hover {
+    background: rgba($color-black-bold, .3);
+    @include fonte($color-yellow, "Poppins", 1rem, bold);
+  }
+  &.active {
+    background: rgba($color-black-bold, .3);
+    @include fonte($color-yellow, "Poppins", 1rem, bold);
+  }
+  input {
+    display: none;
   }
 }

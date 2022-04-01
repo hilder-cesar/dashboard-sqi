@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { getColor, getIcon } from 'src/app/utils/functions/social-network.function';
+import { getColor, getSocialNetworkIcon } from 'src/app/utils/functions/social-network.function';
 
 @Component({
   selector: 'app-social-network',
@@ -8,7 +8,7 @@ import { getColor, getIcon } from 'src/app/utils/functions/social-network.functi
 })
 export class NetworkComponent implements OnChanges {
 
-  getIcon = getIcon;
+  getSocialNetworkIcon = getSocialNetworkIcon;
   getColor = getColor;
 
   @Input() socialNetworkCount: any[] = [];

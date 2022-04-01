@@ -9,6 +9,10 @@ import { AlertService } from 'src/app/utils/services/alert/alert.service';
 import { FilterService } from 'src/app/utils/services/filter/filter.service';
 import { GenericService } from 'src/app/utils/services/generic/generic.service';
 import { cloneDeep } from 'lodash';
+import { getAgeIcon } from 'src/app/utils/functions/age.function';
+import { getSocialNetworkIcon } from 'src/app/utils/functions/social-network.function';
+import { getSentimentIcon } from 'src/app/utils/functions/sentiment.function';
+import { getGenderIcon } from 'src/app/utils/functions/gender.function';
 
 @Component({
   selector: 'app-private',
@@ -28,6 +32,11 @@ export class PrivateComponent extends FilterContainerClass {
   groupList: any[] = [];
   positioningList: any[] = [];
   sentimentList: any[] = [];
+
+  getGenderIcon = getGenderIcon;
+  getAgeIcon = getAgeIcon;
+  getSentimentIcon = getSentimentIcon;
+  getSocialNetworkIcon = getSocialNetworkIcon;
 
   constructor (
     protected formBuilder: FormBuilder,
@@ -56,9 +65,8 @@ export class PrivateComponent extends FilterContainerClass {
         this.filterData.mentions = params.mentions !== undefined ? this.handleParam(params.mentions) : this.filterForm.value.mentions;
         this.filterData.subjects = params.subjects !== undefined ? this.handleParam(params.subjects) : this.filterForm.value.subjects;
         this.filterData.groups = params.groups !== undefined ? this.handleParam(params.groups) : this.filterForm.value.groups;
-        this.filterData.sentiment = params.sentiment !== undefined ? this.handleParam(params.sentiment) : this.filterForm.value.sentiment;
+        this.filterData.sentiments = params.sentiments !== undefined ? this.handleParam(params.sentiments) : this.filterForm.value.sentiments;
         this.filterData.content = params.content !== undefined ? this.handleParam(params.content) : this.filterForm.value.content;
-        this.filterData.checked = true;
         this.filterForm.patchValue(this.filterData);
         this.filterService.filterData.next(this.filterForm.value);
         this.filterService.filterData.next(this.filterData);

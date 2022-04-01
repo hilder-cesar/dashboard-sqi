@@ -1,47 +1,99 @@
-<h2>Menções ao vivo</h2>
+<h2>Menções</h2>
 
 <div class="row">
-  <div class="col-xl-3">
-    <h5>Publicações por rede</h5>
-    <div class="list-wrapper">
+  <div class="col-xl-3 p-0">
+    <div class="section-wrapper">
 
-      <ng-container *ngFor="let influencer of influencersList">
-        <div class="influencer-wrapper my-4">
-          <fa-icon [icon]="getIcon(influencer.name)"></fa-icon>
-          <!-- <img src="https://picsum.photos/75" alt="influencer-name" /> -->
-          <div class="influence-info">
-            <div class="d-flex justify-content-between">
-              <p>{{influencer.name}}</p> | <p>{{influencer.total}}</p>
-            </div>
-            <div clasas="d-flex">
-              <fa-icon [icon]="faFacebook"></fa-icon>
-              <fa-icon [icon]="faInstagram"></fa-icon>
-              <fa-icon [icon]="faTwitter"></fa-icon>
-              <fa-icon [icon]="faYoutube"></fa-icon>
+      <h5>INFLUENCIADORES</h5>
+      <div class="list-wrapper">
+
+        <ng-container *ngFor="let influencer of influencersList">
+          <div class="influencer-wrapper my-4">
+            <fa-icon [icon]="getIcon(influencer.name)"></fa-icon>
+            <!-- <img src="https://picsum.photos/75" alt="influencer-name" /> -->
+            <div class="influence-info">
+              <div class="d-flex justify-content-between">
+                <p>{{influencer.name}}</p> | <p>{{influencer.total}}</p>
+              </div>
+              <div clasas="d-flex">
+                <fa-icon [icon]="faFacebook"></fa-icon>
+                <fa-icon [icon]="faInstagram"></fa-icon>
+                <fa-icon [icon]="faTwitter"></fa-icon>
+                <fa-icon [icon]="faYoutube"></fa-icon>
+              </div>
             </div>
           </div>
-        </div>
-      </ng-container>
+        </ng-container>
 
+      </div>
     </div>
   </div>
-  <div class="col-xl-9 border-left">
-    <h5>Últimas menções ({{mentionsList.length}})</h5>
-    <div class="list-wrapper">
+  <div class="col-xl-9 p-0">
+    <div class="section-wrapper">
 
-      <ng-container *ngFor="let mention of mentionsList">
-        <a [href]="mention.link" target="_blank">
-          <div class="mention-wrapper my-4">
-            <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
-            <div class="mention-info">
-              <span>{{mention.autor}} | {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}} </span>
-              <p>
-                {{mention.conteudo}}
-              </p>
-            </div>
+
+      <h5>MENÇÕES AO VIVO</h5>
+      <div class="row">
+        <div class="col-xl-4">
+          <div class="list-wrapper">
+
+            <ng-container *ngFor="let mention of mentionsList | slice:0:mentionsList.length/3">
+              <a [href]="mention.link" target="_blank">
+                <div class="mention-wrapper my-4">
+                  <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
+                  <div class="mention-info">
+                    <span>@{{mention.autor}} {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
+                    <p>
+                      {{mention.conteudo}}
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <hr />
+            </ng-container>
+
           </div>
-        </a>
-      </ng-container>
+        </div>
+        <div class="col-xl-4">
+          <div class="list-wrapper">
+            <ng-container
+              *ngFor="let mention of mentionsList | slice:(mentionsList.length/3):(mentionsList.length/3)*2">
+              <a [href]="mention.link" target="_blank">
+                <div class="mention-wrapper my-4">
+                  <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
+                  <div class="mention-info">
+                    <span>@{{mention.autor}} {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
+                    <p>
+                      {{mention.conteudo}}
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <hr />
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="list-wrapper">
+            <ng-container
+              *ngFor="let mention of mentionsList | slice:(mentionsList.length/3)*2:(mentionsList.length/3)*3">
+              <a [href]="mention.link" target="_blank">
+                <div class="mention-wrapper my-4">
+                  <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
+                  <div class="mention-info">
+                    <span>@{{mention.autor}} {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
+                    <p>
+                      {{mention.conteudo}}
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <hr />
+            </ng-container>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>

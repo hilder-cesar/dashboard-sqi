@@ -7,7 +7,14 @@
     left: initial !important;
   }
   .dropdown-menu {
-    background: rgba($color-black, 0.9);
+    background: $grey-background;
+    padding: 1rem 0;
+    min-width: 100%;
+    width: max-content;
+    max-width: 400px;
+    margin-top: 1rem;
+    border: none;
+    @include border-radius(1rem);
     @include fonte($color-white, "Poppins", 1rem, normal);
   }
 }
@@ -19,7 +26,10 @@
   @include fonte($color-white, "Poppins;", 1rem, normal);
 
   .header-wrapper {
-    @include flexbox(flex, row, wrap, space-around, center, center);
+    @include flexbox(flex, row, wrap, space-between, center, center);
+    img {
+      max-width: 100px;
+    }
 
     .date {
       width: 0;
@@ -44,7 +54,7 @@
 
     .user-wrapper {
       max-height: 40px;
-      background: #a1a1a1;
+      background: $grey-background;
       @include border-radius(50px);
       @include flexbox(flex, row, wrap, center, center, center);
 
@@ -87,26 +97,30 @@
   width: 2rem;
 }
 .custom-day.focused {
-  background: $yellow-gradient !important;
+  background: rgba($color-black-bold, .3) !important;
+  color: $color-yellow-bold;
 }
 .custom-day.range,
 .custom-day:hover {
-  background: $yellow-gradient;
-  color: white;
+  background: rgba($color-black-bold, .3);
+  color: $color-yellow-bold;
 }
 .custom-day.faded {
-  background: $yellow-gradient;
+  background: rgba($color-black-bold, .3);
+  color: $color-yellow-bold;
 }
 ::ng-deep {
   ngb-datepicker {
     border: none !important;
-    top: 20px !important;
-    transform: translate(0, 75px) !important;
+    top: 40px !important;
+    left: 50% !important;
+    transform: translate(-50%, 0) !important;
   }
   .ngb-dp-day {
     margin: 5px;
     &.ngb-dp-today {
       border: 1px solid rgba(0, 0, 0, 0.2);
+      background: rgba($color-black-bold, .3);
       border-radius: 50%;
     }
   }
@@ -117,7 +131,7 @@
     padding: 15px;
   }
   .ngb-dp-header {
-    background: rgba($color-black, 0.9) !important;
+    background: $grey-background !important;
     .btn-link {
       color: black !important;
       font-size: 14px !important;
@@ -132,14 +146,14 @@
     font-weight: bold;
     font-size: 14px !important;
     text-transform: capitalize;
-    background: rgba($color-black, 0.9) !important;
+    background: $grey-background !important;
   }
   .ngb-dp-weekdays {
     justify-content: space-around;
-    background: rgba($color-black, 0.9) !important;
+    background: $grey-background !important;
     color: $color-white;
     .ngb-dp-weekday {
-      background: rgba($color-black, 0.9);
+      background: $grey-background;
       color: $color-white;
     }
   }

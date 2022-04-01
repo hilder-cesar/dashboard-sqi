@@ -4,7 +4,7 @@
   <ng-container *ngFor="let socialNetwork of socialNetworkCount">
     <div class="socialWrapper" placement="top" [ngbTooltip]="socialNetwork.name">
       <div class="roundedDiv" [ngClass]="{'disabled': getPercentage(socialNetwork.total) === 0}">
-        <fa-icon [icon]="getIcon(socialNetwork.name)"></fa-icon>
+        <fa-icon [icon]="getSocialNetworkIcon(socialNetwork.name)"></fa-icon>
       </div>
       <p>{{ getPercentage(socialNetwork.total) | number}}%</p>
     </div>
