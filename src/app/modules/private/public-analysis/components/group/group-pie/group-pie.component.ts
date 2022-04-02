@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -31,8 +31,7 @@ export class GroupPieComponent implements OnChanges {
         type: 'pie',
         backgroundColor: 'transparent',
         plotShadow: false,
-        height: 170,
-        
+        height: 170
       },
       tooltip: {
         enabled: false
@@ -54,8 +53,11 @@ export class GroupPieComponent implements OnChanges {
           dataLabels: {
             distance: '-100%',
             style: {
+              border: 'none',
+              textOutline: 'none',
+              textDecoration: 'none',
               color: 'white',
-              fontSize: '16px',
+              fontSize: '14px',
               fontFamily: 'Poppins'
             },
             formatter: () => {
@@ -80,23 +82,16 @@ export class GroupPieComponent implements OnChanges {
                 [1, '#f2ca30']
               ]
             },
-            y: (100 * this.groupNumber.total) / this.totalCount
+            y: (100 * this.groupNumber.total) / this.totalCount // Porcentagem colorida
           }, {
             name: '',
             color: 'grey',
-            y: 100 - ((100 * this.groupNumber.total) / this.totalCount),
+            y: 100 - ((100 * this.groupNumber.total) / this.totalCount), // Porcentagem colorida - 100% = % cinza
             dataLabels: {
               enabled: false
             },
             
-          }],
-          // data: seriesData.map((serie: any) => {
-          //   return {
-          //     name: serie.name,
-          //     color: getColor(serie.name),
-          //     y: serie.total
-          //   };
-          // })
+          }]
         }
       ]
     };

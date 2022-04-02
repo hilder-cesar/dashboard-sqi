@@ -26,8 +26,10 @@ export class GenderComponent implements OnChanges {
     return Math.ceil((100 * value) / this.totalValue);
   }
 
-  getIconPaint(value: number): number {
-    const number = this.getPercentage(value);
+  getIconPaint(gender: any): number {
+    const number = this.getPercentage(gender.total);
+    if (gender.name === 'Masculino' || gender.name === 'Feminino')
+      return (number / 100) * 15;
     return (number / 100) * this.iconCount;
   }
 

@@ -4,10 +4,10 @@
   <ng-container *ngFor="let gender of genderCount;">
     <div class="col-xl-3 text-center">
       <div class="row justify-content-center">
-        <fa-icon class="column-5 my-1" 
-          [ngClass]="{'painted': getIconPaint(gender.total) > index  }"
-          [icon]="getIcon(gender.name)" 
-          *ngFor="let icon of [].constructor(iconCount); let index=index;">
+        <fa-icon class="column-5 my-1"
+          [ngClass]="{'painted': getIconPaint(gender) > index, 'gender': gender.name === 'Masculino' || gender.name === 'Feminino' }"
+          [icon]="getIcon(gender.name)"
+          *ngFor="let icon of [].constructor(gender.name === 'Masculino' || gender.name === 'Feminino' ?  15 : iconCount); let index=index;">
         </fa-icon>
       </div>
       <h5 class="my-3">{{ gender.name }} </h5>
