@@ -116,6 +116,23 @@
     left: 50% !important;
     transform: translate(-50%, 0) !important;
   }
+  .datepicker-footer {
+    border-top: 1px solid $color-black;
+    padding: 1rem;
+    @include flexbox(flex, row, nowrap, space-around, center, center);
+    button {
+      border: none;
+      background: transparent;
+      text-transform: uppercase;
+      padding: 8px;
+      @include fonte($color-grey-light, "Poppins", 14px, normal);
+      &:hover {
+        background: rgba($color-black-bold, .3);
+        @include border-radius(8px);
+        @include fonte($color-yellow-bold, "Poppins", 14px, bold);
+      }
+    }
+  }
   .ngb-dp-day {
     margin: 5px;
     &.ngb-dp-today {
@@ -129,6 +146,7 @@
   }
   .ngb-dp-months {
     padding: 15px;
+    padding-bottom: 0;
   }
   .ngb-dp-header {
     background: $grey-background !important;

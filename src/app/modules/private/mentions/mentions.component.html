@@ -10,7 +10,6 @@
         <ng-container *ngFor="let influencer of influencersList">
           <div class="influencer-wrapper my-4">
             <fa-icon [icon]="getIcon(influencer.name)"></fa-icon>
-            <!-- <img src="https://picsum.photos/75" alt="influencer-name" /> -->
             <div class="influence-info">
               <div class="d-flex justify-content-between">
                 <p>{{influencer.name}}</p> | <p>{{influencer.total}}</p>
@@ -42,9 +41,9 @@
                 <div class="mention-wrapper my-4">
                   <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
                   <div class="mention-info">
-                    <span>@{{mention.autor}} {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
+                    <span><strong>@{{mention.autor}}</strong> {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
                     <p>
-                      {{mention.conteudo}}
+                      {{mention.conteudo | truncate:[140] }}
                     </p>
                   </div>
                 </div>
@@ -63,9 +62,9 @@
                 <div class="mention-wrapper my-4">
                   <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
                   <div class="mention-info">
-                    <span>@{{mention.autor}} {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
+                    <span><strong>@{{mention.autor}}</strong> {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
                     <p>
-                      {{mention.conteudo}}
+                      {{mention.conteudo | truncate:[140] }}
                     </p>
                   </div>
                 </div>
@@ -82,9 +81,9 @@
                 <div class="mention-wrapper my-4">
                   <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
                   <div class="mention-info">
-                    <span>@{{mention.autor}} {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
+                    <span><strong>@{{mention.autor}}</strong> {{mention.data | date:'dd/MM/yyyy - HH:mm':'GMT'}}</span>
                     <p>
-                      {{mention.conteudo}}
+                      {{mention.conteudo | truncate:[140] }}
                     </p>
                   </div>
                 </div>

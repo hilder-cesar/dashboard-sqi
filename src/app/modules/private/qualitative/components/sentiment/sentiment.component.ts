@@ -23,21 +23,9 @@ export class SentimentComponent implements OnChanges {
 
   ngOnChanges(simpleChanges: SimpleChanges): void {
     if (simpleChanges.sentimentCount.currentValue) {
+      this.totalValue = Object.values(this.sentimentCount).reduce((prev, current) => prev + current, 0);
       this.initChart();
     }
-  }
-
-  getPercentage(sentiment: string): number {
-    this.totalValue = Object.values(this.sentimentCount).reduce((prev, current) => prev + current, 0);
-    const sentimentRate = (): number => {
-      switch (sentiment) {
-        case 'impartial': return (100 * this.sentimentCount.impartial) / this.totalValue || 0;
-        case 'negative': return (100 * this.sentimentCount.negative) / this.totalValue || 0;
-        case 'positive': return (100 * this.sentimentCount.positive) / this.totalValue || 0;
-        default: return 0;
-      }
-    };
-    return Math.floor(sentimentRate());
   }
 
   initChart(): void {
@@ -46,14 +34,14 @@ export class SentimentComponent implements OnChanges {
       chart: {
         type: 'gauge',
         backgroundColor: 'transparent',
-        height: '300px',
+        height: '220px',
       },
       credits: {
         enabled: false
       },
       pane: {
         center: ['50%', '100%'],
-        size: '200%',
+        size: '350px',
         startAngle: -90,
         endAngle: 90,
         background: [{
@@ -61,9 +49,11 @@ export class SentimentComponent implements OnChanges {
           backgroundColor: {
             linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
             stops: [
-              [0, '#019046'],
-              [0.5, '#f7c80e'],
-              [1, '#ec1b12']
+              [0, '#7cb64f'],
+              [0.25, '#b3eb4f'],
+              [0.5, '#e7f43a'],
+              [0.75, '#e2a828'],
+              [1, '#c84320']
             ]
           },
           innerRadius: '60%',
@@ -74,18 +64,24 @@ export class SentimentComponent implements OnChanges {
       plotOptions: {
         gauge: {
           dial: {
-            backgroundColor: '#43474f',
-            baseLength: '50%',
-            borderColor: '#43474f',
-            baseWidth: 10,
-            borderWidth: 1,
-            radius: '100%',
-            rearLength: '-25%',
-            topWidth: 3,
+            backgroundColor: {
+              linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+              stops: [
+                [0, '#c1c1c1'],
+                [1, '#848483']
+              ]
+            },
+            baseLength: '3%',
+            baseWidth: 20,
+            topWidth: 1,
+            borderWidth: 0,
+            radius: '80%',
+            rearLength: '0%',
           },
           pivot: {
             borderWidth: 0,
-            radius: 0
+            radius: 10,
+            backgroundColor: '#c1c1c1'
           }
         }
       },
@@ -97,63 +93,21 @@ export class SentimentComponent implements OnChanges {
         max: 2,
         minorTicks: false,
         lineWidth: 0,
-        tickWidth: 0,
+        tickWidth: 2,
+        tickLength: 50,
         labels: {
           enabled: false
         }
       },
       series: [
         { type: 'gauge', name: 'Sentimento', data: [this.getSentimentScore()], dataLabels: { enabled: false } }
-      ],
-      responsive: {
-        rules: [
-          {
-            condition: {
-              maxWidth: 1440
-            },
-            chartOptions: {
-              pane: {
-                center: ['50%', '100%'],
-                size: '140%'
-              }
-            }
-          },
-          {
-            condition: {
-              maxWidth: 1024
-            },
-            chartOptions: {
-              chart: {
-                height: '400px'
-              },
-              pane: {
-                center: ['50%', '100%'],
-                size: '200%'
-              }
-            }
-          },
-          {
-            condition: {
-              maxWidth: 768
-            },
-            chartOptions: {
-              chart: {
-                height: '300px'
-              },
-              pane: {
-                center: ['50%', '100%'],
-                size: '160%'
-              }
-            }
-          }
-        ]
-      }
+      ]
     };
   }
 
   getSentimentScore(): number {
     const total = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
-    const medium = Object.values(this.sentimentCount).reduce((prev, current, index) => (index + 1) * current, 0);
+    const medium = Object.values(this.sentimentCount).reduce((_prev, current, index) => (index + 1) * current, 0);
     return (medium / total) + 0.5;
   }
 

@@ -89,19 +89,40 @@ export class TopSubjectsComponent implements OnChanges {
           type: 'bar',
           name: 'Positivas',
           data: this.getSeries(Sentiment.positive),
-          color: '#009245'
+          color: {
+            linearGradient: { x1: 0, y1: 1, x2: 0, y2: 0 },
+            stops: [
+              [0, 'rgba(126, 177, 80, .3)'],
+              [0.5, '#80b24f'],
+              [1, '#7eb150']
+            ]
+          }
         },
         {
           type: 'bar',
           name: 'Negativas',
           data: this.getSeries(Sentiment.negative),
-          color: '#e91c13'
+          color: {
+            linearGradient: { x1: 0, y1: 1, x2: 0, y2: 0 },
+            stops: [
+              [0, 'rgba(200, 69, 34, .3)'],
+              [0.5, '#c7373c'],
+              [1, '#c84522']
+            ]
+          }
         },
         {
           type: 'bar',
           name: 'Neutras',
           data: this.getSeries(Sentiment.impartial),
-          color: '#f7c911'
+          color: {
+            linearGradient: { x1: 0, y1: 1, x2: 0, y2: 0 },
+            stops: [
+              [0, 'rgba(236,189,42,.3)'],
+              [0.5, '#f1ca30'],
+              [1, '#ecbd2a']
+            ]
+          }
         }
       ]
     };

@@ -8,9 +8,24 @@
 
       <div>
         <div class="form-group mb-0">
-          <select class="form-control">
-            <option>Candidato</option>
-          </select>
+          <div ngbDropdown #candidateDropdown="ngbDropdown">
+            <button [ngClass]="{'open': candidateDropdown.isOpen()}" class="filterBtn" id="candidateDropdown"
+              ngbDropdownToggle readonly> Candidato </button>
+            <div ngbDropdownMenu aria-labelledby="candidateDropdown">
+              <!-- <ng-container *ngFor="let gender of genderList">
+                <div class="filter-item"
+                  [ngClass]="{'active': selectionChecked({ name: 'gender', value: gender.name })}">
+                  <input [id]="gender.name" type="checkbox" class="mr-2"
+                    [checked]="selectionChecked({ name: 'gender', value: gender.name })"
+                    (change)="selectionChange($event, { name: 'gender', value: gender.name })" />
+                  <label [for]="gender.name" class="mb-0">
+                    <fa-icon [icon]="getGenderIcon(gender.name)"></fa-icon>
+                    {{gender.name}}
+                  </label>
+                </div>
+              </ng-container> -->
+            </div>
+          </div>
         </div>
       </div>
 
@@ -21,7 +36,7 @@
               readonly> Data </button>
           </div>
           <input class="date" (dateSelect)="onDateSelection($event)" ngbDatepicker #d="ngbDatepicker"
-            [autoClose]="'outside'" [dayTemplate]="t" [displayMonths]="1" [navigation]="'arrows'" />
+            [autoClose]="'outside'"  [footerTemplate]="footerTemplate" [dayTemplate]="t" [displayMonths]="1" [navigation]="'arrows'" />
         </div>
         <ng-template #t let-date let-focused="focused">
           <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
@@ -29,6 +44,13 @@
             (mouseleave)="hoveredDate = null">
             {{ date.day }}
           </span>
+        </ng-template>
+        <ng-template #footerTemplate>
+          <div class="datepicker-footer">
+            <button (click)="setCustomDays(7)">7 dias</button>
+            <button (click)="setCustomDays(14)">14 dias</button>
+            <button (click)="setCustomDays(30)">30 dias</button>
+          </div>
         </ng-template>
       </ng-container>
 

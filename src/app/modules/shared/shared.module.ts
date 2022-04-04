@@ -4,10 +4,13 @@ import { CommonModule } from '@angular/common';
 // Modules
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsPackModule } from './modules/forms-pack/forms-pack.module';
+import { TruncatePipe } from './pipe/truncate/truncate.pipe';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TruncatePipe
+  ],
   imports: [
     CommonModule,
     FormsPackModule,
@@ -15,7 +18,8 @@ import { FormsPackModule } from './modules/forms-pack/forms-pack.module';
   ],
   exports: [
     FormsPackModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    TruncatePipe
   ]
 })
 export class SharedModule { }

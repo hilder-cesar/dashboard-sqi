@@ -1,23 +1,5 @@
-<h5>Sentimentos das menções</h5>
-<h5 class="total">Volume total de menções <br /> {{totalValue | number}}</h5>
-<div class="row justify-content-center">
-  <div class="col-xl-8">
-    <highcharts-chart *ngIf="Highcharts" [Highcharts]="Highcharts" [options]="chartOptions"
-      style="width: 100%; display: block;">
-    </highcharts-chart>
-    <div class="d-flex justify-content-between">
-      <div class="text-center">
-        <h3 class="percent-positivo">{{ sentimentCount && getPercentage('positive') }}%</h3>
-        <!-- <p>{{sentimentCount?.positive | number}} <br /> positivos</p> -->
-      </div>
-      <div class="text-center">
-        <h3 class="percent-neutro">{{ sentimentCount && getPercentage('impartial') }}%</h3>
-        <!-- <p>{{sentimentCount?.impartial | number}} <br /> neutros</p> -->
-      </div>
-      <div class="text-center">
-        <h3 class="percent-negativo">{{ sentimentCount && getPercentage('negative') }}%</h3>
-        <!-- <p>{{sentimentCount?.negative | number}} <br /> negativos</p> -->
-      </div>
-    </div>
-  </div>
-</div>
+<h5>Volume total de menções</h5>
+<p class="total">{{totalValue | number}}</p>
+<highcharts-chart *ngIf="Highcharts" [Highcharts]="Highcharts" [options]="chartOptions"
+  style="width: 100%; display: block;">
+</highcharts-chart>

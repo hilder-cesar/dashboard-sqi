@@ -1,7 +1,7 @@
 import { Directive, OnInit } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { NgbDate, NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
+import { NgbCalendar, NgbDate, NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 import { OnDestroyClass } from "./on-destroy.class";
 
 @Directive()
@@ -17,7 +17,8 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
     protected _activatedRoute: ActivatedRoute,
     protected _router: Router,
     protected _formBuilder: FormBuilder,
-    public _ngbParser: NgbDateParserFormatter
+    public _ngbParser: NgbDateParserFormatter,
+    private _calendar: NgbCalendar
   ) {
 
     super();
@@ -55,7 +56,7 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
   }
 
   protected handleParam(param: any): any {
-    if(typeof param === 'string'){
+    if (typeof param === 'string') {
       return [param];
     }
     return param;
@@ -71,6 +72,13 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
 
   get endDate(): AbstractControl {
     return this.filterForm.controls.endDate;
+  }
+
+  setCustomDays(days: number): any {
+    const startDate = this._calendar.getNext(this._calendar.getToday(), 'd', -days);
+    const today = this._calendar.getToday();
+    this.startDate.setValue(this._ngbParser.format(startDate));
+    this.endDate.setValue(this._ngbParser.format(today));
   }
 
   parseDate(): string {

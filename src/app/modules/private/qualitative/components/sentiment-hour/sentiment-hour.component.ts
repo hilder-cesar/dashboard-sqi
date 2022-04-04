@@ -26,9 +26,9 @@ export class SentimentHourComponent implements OnChanges {
     this.Highcharts = Highcharts;
     this.chartOptions = {
       chart: {
-        type: 'line',
+        type: 'spline',
         backgroundColor: 'transparent',
-        height: 500
+        height: '290px'
       },
       title: {
         text: ''
@@ -37,25 +37,31 @@ export class SentimentHourComponent implements OnChanges {
         enabled: false
       },
       tooltip: {
-        enabled: true
+        enabled: false
       },
       xAxis: {
         categories: this.getCategories(),
         tickmarkPlacement: 'on',
-        gridLineWidth: 1,
+        gridLineWidth: 0,
+        gridLineInterpolation: 'circle',
+        alternateGridColor: 'rgba(255,255,255, .05)',
         title: {
           text: ''
         },
         labels: {
           enabled: true,
+          useHTML: true,
           style: {
             color: 'white'
-          }
+          },
         }
       },
       yAxis: {
         tickmarkPlacement: 'on',
-        gridLineWidth: 0,
+        gridLineWidth: 1,
+        gridLineInterpolation: 'circle',
+        gridLineColor: 'rgba(255,255,255,.3)',
+        gridLineDashStyle: 'Dash',
         title: {
           text: ''
         },
@@ -72,7 +78,7 @@ export class SentimentHourComponent implements OnChanges {
         }
       },
       plotOptions: {
-        line: {
+        spline: {
           allAreas: true,
           color: 'white',
           lineWidth: 5,
@@ -91,10 +97,17 @@ export class SentimentHourComponent implements OnChanges {
       series:
         [
           {
-            type: 'line',
+            type: 'spline',
             name: 'Total',
-            data: this.sentimentByTime.map((sentiment:any) => sentiment.total),
-            color: '#009245'
+            data: this.sentimentByTime.map((sentiment: any) => sentiment.total),
+            color: {
+              linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+              stops: [
+                [0, '#f2ca30'],
+                [0.3, '#f2ca30'],
+                [1, '#ff7619']
+              ]
+            }
           }
         ]
     };
@@ -118,7 +131,9 @@ export class SentimentHourComponent implements OnChanges {
     const seriesValue = this.sentimentByTime;
     return seriesValue.map((series: SentimentTime) => {
       const date = new Date(series.dateString);
-      return series.range || `${date.getDay()}/${date.getMonth() + 1}`;
+      const day = date.getDay();
+      const month = date.getMonth() + 1;
+      return series.range || `${day >= 10 ? day : '0' + day} <br/> ${month >= 10 ? month : '0' + month}`;
     });
   }
 

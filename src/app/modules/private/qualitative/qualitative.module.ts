@@ -11,13 +11,15 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { SentimentComponent } from './components/sentiment/sentiment.component';
 import { SentimentHourComponent } from './components/sentiment-hour/sentiment-hour.component';
 import { TopSubjectsComponent } from './components/top-subjects/top-subjects.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     QualitativeComponent,
     SentimentComponent,
     SentimentHourComponent,
-    TopSubjectsComponent
+    TopSubjectsComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

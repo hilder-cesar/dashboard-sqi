@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { takeUntil } from 'rxjs/operators';
 import { FilterContainerClass } from 'src/app/utils/classes/filter-container.class';
 import { AlertService } from 'src/app/utils/services/alert/alert.service';
@@ -45,10 +45,11 @@ export class PrivateComponent extends FilterContainerClass {
     public ngbParser: NgbDateParserFormatter,
     private genericService: GenericService,
     private alert: AlertService,
-    protected filterService: FilterService
+    protected filterService: FilterService,
+    private calendar: NgbCalendar
   ) {
 
-    super(activatedRoute, router, formBuilder, ngbParser);
+    super(activatedRoute, router, formBuilder, ngbParser, calendar);
 
   }
 
@@ -182,16 +183,16 @@ export class PrivateComponent extends FilterContainerClass {
 
   getSentiment(): void {
     this.genericService.get('sentiment')
-    .pipe(takeUntil(this.onDestroy))
-    .subscribe(
-      (response: any) => {
-        this.sentimentList = response;
-        this.alert.closeAlert();
-      },
-      (error: any) => {
-        this.alert.showAlertError(error.message);
-      }
-    );
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(
+        (response: any) => {
+          this.sentimentList = response;
+          this.alert.closeAlert();
+        },
+        (error: any) => {
+          this.alert.showAlertError(error.message);
+        }
+      );
   }
 
 

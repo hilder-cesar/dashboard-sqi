@@ -1,0 +1,8 @@
+@import "src/sass/import";
+
+img {
+  width: 105px;
+  height: 105px;
+  border: 1px solid $color-black;
+  @include border-radius(50%);
+}

@@ -2,7 +2,7 @@
 
 .total {
   text-align: center;
-  @include fonte($color-blue-light, "Poppins", 45px, 700);
+  @include fonte(#808080, "Poppins", 20px, normal);
 }
 
 .percent-positivo {

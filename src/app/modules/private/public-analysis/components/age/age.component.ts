@@ -43,6 +43,7 @@ export class AgeComponent implements OnChanges {
         tickmarkPlacement: 'on',
         gridLineWidth: 0,
         gridLineInterpolation: 'circle',
+        alternateGridColor: 'rgba(255,255,255, .05)',
         title: {
           text: ''
         },
