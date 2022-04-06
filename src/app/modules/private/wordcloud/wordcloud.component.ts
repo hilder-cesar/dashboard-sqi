@@ -88,7 +88,11 @@ export class WordcloudComponent extends OnDestroyClass implements OnInit {
           type: 'wordcloud',
           spiral: 'rectangular',
           placementStrategy: 'center',
-          colors: ['white', '#23a8e0', '#97d042'],
+          colors: ['#ffc90f', 'white', '#808080'],
+          style: {
+            fontWeight: '300'
+          },
+          maxFontSize: 16,
           data: wordCloudData.map(word => {
             word.weight = Math.ceil((100 * word.weight) / this.totalValue);
             word.weight = word.weight > 3 ? 3 : word.weight;

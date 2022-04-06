@@ -62,25 +62,29 @@ export class PublicProfileComponent extends OnDestroyClass implements OnInit {
         type: 'pie',
         backgroundColor: 'transparent',
         plotShadow: false,
+        height: 700
       },
       tooltip: {
-        pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '{point.name}: <b>{point.percentage:.0f}%</b>'
       },
       credits: {
         enabled: false
       },
       legend: {
+        itemMarginBottom: 15,
         itemStyle: {
           color: 'white',
-          fontSize: '2rem'
+          fontSize: '13px',
+          fontWeight: '300'
         },
         itemHoverStyle: {
           color: '#ccc'
         },
-        align: 'left',
+        align: 'right',
         layout: 'vertical',
         verticalAlign: 'bottom',
-        x: 40
+        x: -200,
+        y: -200,
       },
       plotOptions: {
         pie: {
@@ -88,15 +92,18 @@ export class PublicProfileComponent extends OnDestroyClass implements OnInit {
           shadow: false,
           center: ['50%', '50%'],
           innerSize: '80%',
-          size: '80%',
+          size: '100%',
+          borderColor: 'transparent',
           dataLabels: {
+            distance: '-30%',
             style: {
               color: 'white',
               border: 'none',
-              fontSize: '2rem'
+              fontSize: '16px',
+              fontWeight: '300'
             },
             formatter: function () {
-              return `${Number(((100 * (this.y || 0)) / (this.total || 0))).toFixed(1)}%`;
+              return `${Math.round(((100 * (this.y || 0)) / (this.total || 0)))}%`;
             }
           }
         }
@@ -110,7 +117,10 @@ export class PublicProfileComponent extends OnDestroyClass implements OnInit {
           data: seriesData.map((serie: any) => {
             return {
               name: serie.name,
-              color: getColor(serie.name),
+              color: {
+                linearGradient: { x1: 0, y1: 1, x2: 1, y2: 0 },
+                stops: getColor(serie.name)
+              },
               y: serie.total
             }
           })
