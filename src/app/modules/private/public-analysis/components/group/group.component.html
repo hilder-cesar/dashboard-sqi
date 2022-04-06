@@ -2,7 +2,7 @@
 
 <div class="row justify-content-center">
   <ng-container *ngFor="let group of groupCount; let index = index;">
-    <div class="col-xl-3 my-3" [ngClass]="{'column-5': index > 3}">
+    <div class="column-5 my-3">
       <app-group-pie [groupNumber]="group" [totalCount]="totalCount"></app-group-pie>
     </div>
   </ng-container>
