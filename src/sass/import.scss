@@ -15,6 +15,10 @@
   background: rgba($color-blue-light, 0.1);
   height: calc(100% - 20px);
   @include border-radius(1rem);
+  &.mh {
+    max-height: 340px;
+    overflow-y: auto;
+  }
 }
 
 h2 {

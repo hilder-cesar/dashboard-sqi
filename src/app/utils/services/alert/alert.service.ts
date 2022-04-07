@@ -6,8 +6,6 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 })
 export class AlertService {
 
-  constructor() { }
-
   initRequest(message = 'Aguarde...'): void {
     Swal.fire({
       text: message,

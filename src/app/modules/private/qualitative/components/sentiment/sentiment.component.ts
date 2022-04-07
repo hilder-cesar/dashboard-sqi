@@ -88,6 +88,19 @@ export class SentimentComponent implements OnChanges {
       title: {
         text: '',
       },
+      tooltip: {
+        useHTML: true,
+        style: {
+          fontFamily: 'Poppins'
+        },
+        formatter: () => {
+          return `
+            <span class="positive ball"></span>Positivo: ${Math.round((100 * this.sentimentCount.positive) / this.totalValue)}% <br/> 
+            <span class="negative ball"></span>Negativo: ${Math.round((100 * this.sentimentCount.negative) / this.totalValue)}% <br/> 
+            <span class="impartial ball"></span>Neutro: ${Math.round((100 * this.sentimentCount.impartial) / this.totalValue)}% <br/> 
+            <span class="unqualified ball"></span>Não definido: ${Math.round((100 * this.sentimentCount.unqualified) / this.totalValue)}%`;
+        }
+      },
       yAxis: {
         min: 0,
         max: 2,
@@ -107,8 +120,8 @@ export class SentimentComponent implements OnChanges {
 
   getSentimentScore(): number {
     const total = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
-    const medium = Object.values(this.sentimentCount).reduce((_prev, current, index) => (index + 1) * current, 0);
-    return (medium / total) + 0.5;
+    const medium = Object.values(this.sentimentCount).reduce((prev, current, index) => (current || 0) * (index + 1) + prev, 0);
+    return (total / medium);
   }
 
 }

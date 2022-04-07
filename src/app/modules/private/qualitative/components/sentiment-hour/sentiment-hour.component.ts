@@ -52,7 +52,8 @@ export class SentimentHourComponent implements OnChanges {
           enabled: true,
           useHTML: true,
           style: {
-            color: 'white'
+            color: 'white',
+            fontFamily: 'Poppins'
           },
         }
       },
@@ -67,7 +68,8 @@ export class SentimentHourComponent implements OnChanges {
         },
         labels: {
           style: {
-            color: 'white'
+            color: 'white',
+            fontFamily: 'Poppins'
           }
         }
       },

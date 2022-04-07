@@ -14,3 +14,12 @@
 .percent-negativo {
   @include fonte($color-red-bold, "Poppins", 2rem, 700);
 }
+
+span.ball {
+  width: 5px;
+  height: 5px;
+  &.positive{ background: $color-green-bold; }
+  &.negative{ background: $color-red-bold; }
+  &.impartial{ background: $color-yellow-bold; }
+  &.unqualified{ background: $color-blue; }
+}

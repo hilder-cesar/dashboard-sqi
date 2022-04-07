@@ -1,0 +1,8 @@
+::ng-deep {
+  highcharts-chart {
+    overflow-y: scroll;
+  }
+  .highcharts-scrollbar-thumb {
+    background-color: red;
+  }
+}

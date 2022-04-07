@@ -8,7 +8,7 @@ import { FilterContainerClass } from 'src/app/utils/classes/filter-container.cla
 import { AlertService } from 'src/app/utils/services/alert/alert.service';
 import { FilterService } from 'src/app/utils/services/filter/filter.service';
 import { GenericService } from 'src/app/utils/services/generic/generic.service';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, orderBy } from 'lodash';
 import { getAgeIcon } from 'src/app/utils/functions/age.function';
 import { getSocialNetworkIcon } from 'src/app/utils/functions/social-network.function';
 import { getSentimentIcon } from 'src/app/utils/functions/sentiment.function';
@@ -32,6 +32,8 @@ export class PrivateComponent extends FilterContainerClass {
   groupList: any[] = [];
   positioningList: any[] = [];
   sentimentList: any[] = [];
+  candidateList: any[] = [];
+  citiesList: any[] = [];
 
   getGenderIcon = getGenderIcon;
   getAgeIcon = getAgeIcon;
@@ -68,6 +70,8 @@ export class PrivateComponent extends FilterContainerClass {
         this.filterData.groups = params.groups !== undefined ? this.handleParam(params.groups) : this.filterForm.value.groups;
         this.filterData.sentiments = params.sentiments !== undefined ? this.handleParam(params.sentiments) : this.filterForm.value.sentiments;
         this.filterData.content = params.content !== undefined ? this.handleParam(params.content) : this.filterForm.value.content;
+        this.filterData.cities = params.cities !== undefined ? this.handleParam(params.cities) : this.filterForm.value.cities;
+        this.filterData.candidate = params.candidate !== undefined ? params.candidate : this.filterForm.value.candidate;
         this.filterForm.patchValue(this.filterData);
         this.filterService.filterData.next(this.filterForm.value);
         this.filterService.filterData.next(this.filterData);
@@ -79,6 +83,7 @@ export class PrivateComponent extends FilterContainerClass {
     this.getAgeList();
     this.getPoliticalPos();
     this.getSentiment();
+    this.getCities();
   }
 
   selectionChange(event: Event, value: any): void {
@@ -186,7 +191,23 @@ export class PrivateComponent extends FilterContainerClass {
       .pipe(takeUntil(this.onDestroy))
       .subscribe(
         (response: any) => {
+          response = orderBy(response, 'name');
+          response.push(response.splice(1, 1)[0]);
           this.sentimentList = response;
+          this.alert.closeAlert();
+        },
+        (error: any) => {
+          this.alert.showAlertError(error.message);
+        }
+      );
+  }
+
+  getCities(): void {
+    this.genericService.get('city')
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(
+        (response: any) => {
+          this.citiesList = response;
           this.alert.closeAlert();
         },
         (error: any) => {

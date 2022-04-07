@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 // Chart
-import * as Highcharts from 'highcharts';
+import * as Highcharts from 'highcharts/highstock';
 import { Sentiment } from 'src/app/utils/interfaces/sentiment.interface';
 
 @Component({
@@ -19,6 +19,7 @@ export class TopSubjectsComponent implements OnChanges {
   ngOnChanges(simpleChanges: SimpleChanges): void {
     if (simpleChanges.topSubjects.currentValue) {
       this.initChart();
+      console.log(this.topSubjects.length);
     }
   }
 
@@ -27,7 +28,7 @@ export class TopSubjectsComponent implements OnChanges {
     this.chartOptions = {
       chart: {
         type: 'bar',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
       },
       title: {
         text: ''
@@ -37,22 +38,44 @@ export class TopSubjectsComponent implements OnChanges {
       },
       xAxis: {
         categories: this.topSubjects.map((subject: any) => subject.name),
-        height: '100%',
+        min: 0,
+        max: this.topSubjects.length >= 10 ? 10 : this.topSubjects.length - 1,
         gridLineWidth: 0,
         lineWidth: 0,
         labels: {
           style: {
-            color: 'white'
+            color: 'white',
+            fontFamily: 'Poppins'
           }
+        },
+        scrollbar: {
+          enabled: true,
+          barBorderWidth: 0,
+          barBackgroundColor: {
+            linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
+            stops: [
+              [0, '#5f6062'],
+              [1, '#222429']
+            ]
+          },
+          trackBackgroundColor: {
+            linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
+            stops: [[0, '#2e2e2e'], [1, '#00000']]
+          },
+          buttonArrowColor: 'transparent',
+          buttonBackgroundColor: 'transparent',
+          buttonBorderWidth: 0,
+          trackBorderWidth: 0,
         }
       },
       yAxis: {
-        min: 0,
         lineWidth: 0,
-        gridLineWidth: 0,
+        gridLineWidth: 1,
+        gridLineColor: 'rgba(255, 255, 255, .05)',
         reversedStacks: false,
         title: {
-          text: ''
+          text: '',
+          align: 'high'
         },
         labels: {
           enabled: false,

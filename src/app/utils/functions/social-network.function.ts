@@ -1,5 +1,5 @@
-import { faBlogger, faFacebook, faFlickr, faGoogle, faInstagram, faTwitter, faVimeo, faWordpress, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faGlobe, faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { faBlogger, faFacebook, faFlickr, faGoogle, faInstagram, faReddit, faTwitter, faVimeo, faWordpress, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faHashtag, faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 export const getSocialNetworkIcon = (socialNetwork: string): IconDefinition => {
   switch (socialNetwork) {
@@ -11,8 +11,9 @@ export const getSocialNetworkIcon = (socialNetwork: string): IconDefinition => {
     case 'Flickr': return faFlickr;
     case 'YouTube': return faYoutube;
     case 'Google News': return faGoogle;
-    case 'G1': return faGlobe;
     case 'Vimeo': return faVimeo;
+    case 'Reddit': return faReddit;
+    case 'Outras Mídias': return faHashtag;
     default: return faQuestion;
   }
 };

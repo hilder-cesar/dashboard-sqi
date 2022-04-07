@@ -34,10 +34,10 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
       subjects: [[]],
       age: [[]],
       groups: [[]],
-      limit: [10],
-      author: [''],
       content: [[]],
-      sentiments: [[]]
+      sentiments: [[]],
+      cities: [[]],
+      candidate: [null]
     });
 
     this.filterForm.valueChanges
