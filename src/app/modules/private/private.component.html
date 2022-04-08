@@ -12,18 +12,17 @@
             <button [ngClass]="{'open': candidateDropdown.isOpen()}" class="filterBtn" id="candidateDropdown"
               ngbDropdownToggle readonly> Candidato </button>
             <div ngbDropdownMenu aria-labelledby="candidateDropdown">
-              <!-- <ng-container *ngFor="let politicalProfile of politicalProfileList">
+              <ng-container *ngFor="let candidate of candidateList">
                 <div class="filter-item"
-                  [ngClass]="{'active': selectionChecked({ name: 'gender', value: gender.name })}">
-                  <input [id]="gender.name" type="checkbox" class="mr-2"
-                    [checked]="selectionChecked({ name: 'gender', value: gender.name })"
-                    (change)="selectionChange($event, { name: 'gender', value: gender.name })" />
-                  <label [for]="gender.name" class="mb-0">
-                    <fa-icon [icon]="getGenderIcon(gender.name)"></fa-icon>
-                    {{gender.name}}
+                  [ngClass]="{'active': selectionChecked({ name: 'candidate', value: candidate.name })}">
+                  <input [id]="candidate.name" type="checkbox" class="mr-2"
+                    [checked]="selectionChecked({ name: 'candidate', value: candidate.name })"
+                    (change)="selectionChange($event, { name: 'candidate', value: candidate.name })" />
+                  <label [for]="candidate.name" class="mb-0">
+                    {{candidate.name}}
                   </label>
                 </div>
-              </ng-container> -->
+              </ng-container>
             </div>
           </div>
         </div>

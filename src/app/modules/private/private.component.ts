@@ -84,6 +84,7 @@ export class PrivateComponent extends FilterContainerClass {
     this.getPoliticalPos();
     this.getSentiment();
     this.getCities();
+    this.getCandidates();
   }
 
   selectionChange(event: Event, value: any): void {
@@ -208,6 +209,20 @@ export class PrivateComponent extends FilterContainerClass {
       .subscribe(
         (response: any) => {
           this.citiesList = response;
+          this.alert.closeAlert();
+        },
+        (error: any) => {
+          this.alert.showAlertError(error.message);
+        }
+      );
+  }
+
+  getCandidates(): void {
+    this.genericService.get('political-profile')
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(
+        (response: any) => {
+          this.candidateList = response;
           this.alert.closeAlert();
         },
         (error: any) => {

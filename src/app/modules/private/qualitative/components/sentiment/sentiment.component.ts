@@ -5,6 +5,8 @@ import { SentimentCountInterface } from 'src/app/utils/interfaces/sentiment.inte
 import * as Highcharts from 'highcharts';
 import HighchartsMore from 'highcharts/highcharts-more';
 import HC_SolidGauge from 'highcharts/modules/solid-gauge';
+import { sentimentWeight } from 'src/app/utils/functions/sentiment.function';
+import { cloneDeep } from 'lodash';
 HighchartsMore(Highcharts);
 HC_SolidGauge(Highcharts);
 
@@ -103,8 +105,9 @@ export class SentimentComponent implements OnChanges {
       },
       yAxis: {
         min: 0,
-        max: 2,
+        max: this.totalValue + 1,
         minorTicks: false,
+        tickInterval: this.totalValue / 6,
         lineWidth: 0,
         tickWidth: 2,
         tickLength: 50,
@@ -119,9 +122,14 @@ export class SentimentComponent implements OnChanges {
   }
 
   getSentimentScore(): number {
-    const total = Object.values(this.sentimentCount).reduce((prev, current) => prev + current);
-    const medium = Object.values(this.sentimentCount).reduce((prev, current, index) => (current || 0) * (index + 1) + prev, 0);
-    return (total / medium);
+    const sentiment = cloneDeep(this.sentimentCount);
+    Object.keys(sentiment)
+      .forEach((key) => {
+        let sentimentValue = sentiment[key as keyof SentimentCountInterface];
+        sentimentValue = sentimentValue * sentimentWeight(key);
+        sentiment[key as keyof SentimentCountInterface] = sentimentValue;
+      });
+    return Object.values(sentiment).reduce((prev, current) => current + prev, 0);
   }
 
 }

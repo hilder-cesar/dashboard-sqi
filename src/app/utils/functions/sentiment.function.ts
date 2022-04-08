@@ -9,3 +9,13 @@ export const getSentimentIcon = (sentiment: string): IconDefinition => {
     default: return faQuestion;
   }
 };
+
+export const sentimentWeight = (sentiment: string): number => {
+  switch (sentiment) {
+    case 'positive': return 0;
+    case 'impartial': return 0.5;
+    case 'unqualified': return 0.5;
+    case 'negative': return 1;
+    default: return 0;
+  }
+};

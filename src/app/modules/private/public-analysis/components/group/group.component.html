@@ -1,7 +1,7 @@
 <h5>Grupo</h5>
 
 <div class="row justify-content-center">
-  <ng-container *ngFor="let group of groupCount; let index = index;">
+  <ng-container *ngFor="let group of groupCount | slice:0:10; let index = index;">
     <div class="column-5 my-3">
       <app-group-pie [groupNumber]="group" [totalCount]="totalCount"></app-group-pie>
     </div>
