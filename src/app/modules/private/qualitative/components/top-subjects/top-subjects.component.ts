@@ -19,7 +19,6 @@ export class TopSubjectsComponent implements OnChanges {
   ngOnChanges(simpleChanges: SimpleChanges): void {
     if (simpleChanges.topSubjects.currentValue) {
       this.initChart();
-      console.log(this.topSubjects.length);
     }
   }
 
@@ -74,6 +73,7 @@ export class TopSubjectsComponent implements OnChanges {
         gridLineWidth: 1,
         gridLineColor: 'rgba(255, 255, 255, .05)',
         reversedStacks: false,
+        max: this.topSubjects[0].total,
         title: {
           text: '',
           align: 'high'
