@@ -1,6 +1,7 @@
 @import "src/sass/import";
 
 .pie-total {
+  @include fonte($color-white, "Poppins", 1.1rem, normal);
   span {
     color: #a6a6a6;
   }

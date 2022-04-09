@@ -6,7 +6,7 @@
   h5 {
     text-align: center !important;
     text-transform: uppercase;
-    @include fonte($color-white, "Poppins", 1rem, 300);
+    @include fonte($color-white, "Poppins", 1.1rem, bold);
   }
 }
 .section-wrapper {

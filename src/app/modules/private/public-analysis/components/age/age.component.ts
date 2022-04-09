@@ -49,7 +49,9 @@ export class AgeComponent implements OnChanges {
         },
         labels: {
           style: {
-            color: 'white'
+            color: 'white',
+            fontSize: '14px',
+            fontFamily: 'Poppins'
           }
         }
       },
@@ -63,7 +65,9 @@ export class AgeComponent implements OnChanges {
         },
         labels: {
           style: {
-            color: 'white'
+            color: 'white',
+            fontSize: '14px',
+            fontFamily: 'Poppins'
           }
         }
       },
@@ -73,6 +77,8 @@ export class AgeComponent implements OnChanges {
       plotOptions: {
         spline: {
           borderColor: 'transparent',
+          lineWidth: 5,
+          borderWidth: 1,
           dataLabels: {
             enabled: true,
             useHTML: true,
@@ -84,6 +90,10 @@ export class AgeComponent implements OnChanges {
             borderColor: 'white',
             color: 'white',
             borderWidth: 1,
+            style: {
+              fontSize: '14px',
+              fontFamily: 'Poppins'
+            }
           }
         }
       },

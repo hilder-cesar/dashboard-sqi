@@ -36,7 +36,7 @@
         <div class="col-xl-4">
           <div class="list-wrapper">
 
-            <ng-container *ngFor="let mention of mentionsList | slice:0:mentionsList.length/3">
+            <ng-container *ngFor="let mention of mentionsList | slice:0:30;">
               <a [href]="mention.link" target="_blank">
                 <div class="mention-wrapper my-4">
                   <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
@@ -57,7 +57,7 @@
         <div class="col-xl-4">
           <div class="list-wrapper">
             <ng-container
-              *ngFor="let mention of mentionsList | slice:(mentionsList.length/3):(mentionsList.length/3)*2">
+              *ngFor="let mention of mentionsList | slice:30:60;">
               <a [href]="mention.link" target="_blank">
                 <div class="mention-wrapper my-4">
                   <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
@@ -76,7 +76,7 @@
         <div class="col-xl-4">
           <div class="list-wrapper">
             <ng-container
-              *ngFor="let mention of mentionsList | slice:(mentionsList.length/3)*2:(mentionsList.length/3)*3">
+              *ngFor="let mention of mentionsList | slice:60:90;">
               <a [href]="mention.link" target="_blank">
                 <div class="mention-wrapper my-4">
                   <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />

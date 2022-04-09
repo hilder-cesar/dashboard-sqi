@@ -45,7 +45,8 @@ export class TopSubjectsComponent implements OnChanges {
         labels: {
           style: {
             color: 'white',
-            fontFamily: 'Poppins'
+            fontFamily: 'Poppins',
+            fontSize: '14px'
           }
         },
         scrollbar: {
@@ -97,6 +98,7 @@ export class TopSubjectsComponent implements OnChanges {
         bar: {
           allAreas: true,
           borderWidth: 0,
+          pointRange:.9,
           label: {
             style: {
               color: 'white'

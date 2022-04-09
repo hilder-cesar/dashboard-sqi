@@ -1,15 +1,17 @@
 <h5>Redes</h5>
 
 <div class="row justify-content-center">
-  <ng-container *ngFor="let socialNetwork of socialNetworkCount | slice:0:10">
-    <div class="socialWrapper" placement="top" [ngbTooltip]="socialNetwork.name">
-      <div class="roundedDiv" [ngClass]="{'disabled': getPercentage(socialNetwork.total) === 0}">
-        <fa-icon *ngIf="getSocialNetworkIcon(socialNetwork.name) !== faQuestion"
-          [icon]="getSocialNetworkIcon(socialNetwork.name)"></fa-icon>
-        <img [src]="imagePath(socialNetwork.name, getPercentage(socialNetwork.total) === 0)" [alt]="socialNetwork.name"
-          *ngIf="getSocialNetworkIcon(socialNetwork.name) === faQuestion" />
+  <ng-container *ngFor="let socialNetwork of socialNetworkCount">
+    <ng-container *ngIf="getPercentage(socialNetwork.total) >= 1">
+      <div class="socialWrapper" placement="top" [ngbTooltip]="socialNetwork.name">
+        <div class="roundedDiv" [ngClass]="{'disabled': getPercentage(socialNetwork.total) === 0}">
+          <fa-icon *ngIf="getSocialNetworkIcon(socialNetwork.name) !== faQuestion"
+            [icon]="getSocialNetworkIcon(socialNetwork.name)"></fa-icon>
+          <img [src]="imagePath(socialNetwork.name, getPercentage(socialNetwork.total) === 0)"
+            [alt]="socialNetwork.name" *ngIf="getSocialNetworkIcon(socialNetwork.name) === faQuestion" />
+        </div>
+        <p>{{ getPercentage(socialNetwork.total) | number}}%</p>
       </div>
-      <p>{{ getPercentage(socialNetwork.total) | number}}%</p>
-    </div>
+    </ng-container>
   </ng-container>
 </div>

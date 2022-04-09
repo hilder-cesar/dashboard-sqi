@@ -57,7 +57,7 @@ export class GroupPieComponent implements OnChanges {
               textOutline: 'none',
               textDecoration: 'none',
               color: 'white',
-              fontSize: '14px',
+              fontSize: '16px',
               fontFamily: 'Poppins'
             },
             formatter: () => {

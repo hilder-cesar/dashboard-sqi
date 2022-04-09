@@ -95,7 +95,6 @@ export class PublicProfileComponent extends OnDestroyClass implements OnInit {
           size: '100%',
           borderColor: 'transparent',
           dataLabels: {
-            distance: '-30%',
             style: {
               color: 'white',
               border: 'none',
