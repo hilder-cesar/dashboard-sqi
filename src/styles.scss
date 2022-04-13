@@ -29,9 +29,14 @@
     @include fonte($color-white, "Poppins", 1rem, normal);
   }
 
-  // &.open {
-  //   @include border-radius(20px 20px 0 0);
-  // }
+  &.selected {
+    background: grey !important;
+  }
+  span {
+    padding: .3rem;
+    background: rgba($color-black-bold, .3);
+    @include fonte($color-white, "Poppins", .8rem, 300);
+  }
 }
 
 .filter-item {
@@ -56,5 +61,10 @@
   }
   input {
     display: none;
+  }
+  img {
+    width: 25px;
+    height: 25px;
+    @include border-radius(50%);
   }
 }

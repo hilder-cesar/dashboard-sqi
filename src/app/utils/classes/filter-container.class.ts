@@ -2,6 +2,7 @@ import { Directive, OnInit } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
+import { CandidateService } from "../services/candidate/candidate.service";
 import { OnDestroyClass } from "./on-destroy.class";
 
 @Directive()
@@ -18,7 +19,8 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
     protected _router: Router,
     protected _formBuilder: FormBuilder,
     public _ngbParser: NgbDateParserFormatter,
-    private _calendar: NgbCalendar
+    private _calendar: NgbCalendar,
+    private _candidateService: CandidateService
   ) {
 
     super();
@@ -43,6 +45,7 @@ export abstract class FilterContainerClass extends OnDestroyClass implements OnI
     this.filterForm.valueChanges
       .subscribe((value) => {
         this.updateQueryParams(value);
+        this._candidateService.candidate.next(value.candidate);
       });
 
   }

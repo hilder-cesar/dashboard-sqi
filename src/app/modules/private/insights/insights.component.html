@@ -1,1 +1,25 @@
-<h2>Insights</h2>
+<h2>
+  Insights
+</h2>
+
+<div class="max-height">
+  <ng-container *ngFor="let insight of insightList">
+    <div class="col-xl-4">
+      <div class="section-wrapper">
+        <p>{{insight}}</p>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+
+<div class="section-wrapper">
+  <form [formGroup]="insightForm">
+    <div class="form-group">
+      <textarea class="form-control" rows="5"></textarea>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button>Enviar</button>
+    </div>
+  </form>
+</div>

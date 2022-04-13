@@ -34,8 +34,8 @@
       <h5>MENÇÕES AO VIVO</h5>
       <div class="row">
         <div class="col-xl-4">
+          <h5>1-30</h5>
           <div class="list-wrapper">
-
             <ng-container *ngFor="let mention of mentionsList | slice:0:30;">
               <a [href]="mention.link" target="_blank">
                 <div class="mention-wrapper my-4">
@@ -55,6 +55,7 @@
           </div>
         </div>
         <div class="col-xl-4">
+          <h5>31-60</h5>
           <div class="list-wrapper">
             <ng-container
               *ngFor="let mention of mentionsList | slice:30:60;">
@@ -74,6 +75,7 @@
           </div>
         </div>
         <div class="col-xl-4">
+          <h5>61-90</h5>
           <div class="list-wrapper">
             <ng-container
               *ngFor="let mention of mentionsList | slice:60:90;">

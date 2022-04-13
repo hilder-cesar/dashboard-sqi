@@ -1,6 +1,8 @@
 <h5>Perfil</h5>
 
-<!-- <div class="row justify-content-center align-items-center">
-  <img src="assets/profile-default.png" alt="profile" />
-  <h5 class="ml-5">Rodrigo Maia</h5>
-</div> -->
+<div class="row justify-content-center align-items-center">
+  <img
+    [src]="candidateService.candidate.getValue() ? 'assets/candidate/'+candidateService.candidate.getValue()+'.jpg' : 'assets/profile-default.png'"
+    alt="profile" />
+  <h5 class="ml-5">{{ candidateService.candidate.getValue() || 'Selecione candidato' }}</h5>
+</div>

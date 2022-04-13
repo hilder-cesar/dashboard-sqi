@@ -133,7 +133,7 @@ export class SentimentHourComponent implements OnChanges {
     const seriesValue = this.sentimentByTime;
     return seriesValue.map((series: SentimentTime) => {
       const date = new Date(series.dateString);
-      const day = date.getDay();
+      const day = date.getDate();
       const month = date.getMonth() + 1;
       return series.range || `${day >= 10 ? day : '0' + day} <br/> ${month >= 10 ? month : '0' + month}`;
     });

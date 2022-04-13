@@ -9,16 +9,16 @@
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #candidateDropdown="ngbDropdown">
-            <button [ngClass]="{'open': candidateDropdown.isOpen()}" class="filterBtn" id="candidateDropdown"
+            <button [ngClass]="{'open': candidateDropdown.isOpen(), 'selected': filterForm.value.candidate}" class="filterBtn" id="candidateDropdown"
               ngbDropdownToggle readonly> Candidato </button>
             <div ngbDropdownMenu aria-labelledby="candidateDropdown">
               <ng-container *ngFor="let candidate of candidateList">
-                <div class="filter-item"
-                  [ngClass]="{'active': selectionChecked({ name: 'candidate', value: candidate.name })}">
+                <div class="filter-item" [ngClass]="{'active': filterForm.value.candidate === candidate.name}">
                   <input [id]="candidate.name" type="checkbox" class="mr-2"
-                    [checked]="selectionChecked({ name: 'candidate', value: candidate.name })"
-                    (change)="selectionChange($event, { name: 'candidate', value: candidate.name })" />
+                    [checked]="filterForm.value.candidate === candidate.name"
+                    (click)="handleCandidate(candidate.name)" />
                   <label [for]="candidate.name" class="mb-0">
+                    <img [src]="'assets/candidate/'+candidate.name+'.jpg'" [alt]="'photo'">
                     {{candidate.name}}
                   </label>
                 </div>
@@ -31,7 +31,7 @@
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #citiesDropdown="ngbDropdown">
-            <button [ngClass]="{'open': citiesDropdown.isOpen()}" class="filterBtn" id="citiesDropdown"
+            <button [ngClass]="{'open': citiesDropdown.isOpen(), 'selected': filterForm.value.cities.length > 0}" class="filterBtn" id="citiesDropdown"
               ngbDropdownToggle readonly> Cidades </button>
             <div ngbDropdownMenu aria-labelledby="citiesDropdown">
               <ng-container *ngFor="let city of citiesList">
@@ -52,7 +52,7 @@
       <ng-container>
         <div class="position-relative">
           <div class="form-group mb-0">
-            <button [ngClass]="{'open': d.isOpen()}" class="filterBtn" id="groupsDropdown" (click)="d.toggle()"
+            <button [ngClass]="{'open': d.isOpen(), 'selected': filterForm.value.startDate || filterForm.value.endDate}" class="filterBtn" id="groupsDropdown" (click)="d.toggle()"
               readonly> Data </button>
           </div>
           <input class="date" (dateSelect)="onDateSelection($event)" ngbDatepicker #d="ngbDatepicker"
@@ -78,8 +78,8 @@
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #genderDropdown="ngbDropdown">
-            <button [ngClass]="{'open': genderDropdown.isOpen()}" class="filterBtn" id="genderDropdown"
-              ngbDropdownToggle readonly> Gênero </button>
+            <button [ngClass]="{'open': genderDropdown.isOpen(), 'selected': filterForm.value.gender.length > 0}" class="filterBtn" id="genderDropdown"
+              ngbDropdownToggle readonly> Gênero</button>
             <div ngbDropdownMenu aria-labelledby="genderDropdown">
               <ng-container *ngFor="let gender of genderList">
                 <div class="filter-item"
@@ -97,10 +97,11 @@
           </div>
         </div>
       </div>
+
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #ageDropdown="ngbDropdown">
-            <button [ngClass]="{'open': ageDropdown.isOpen()}" class="filterBtn" id="ageDropdown" ngbDropdownToggle
+            <button [ngClass]="{'open': ageDropdown.isOpen(), 'selected': filterForm.value.age.length > 0}" class="filterBtn" id="ageDropdown" ngbDropdownToggle
               readonly> Faixa etária </button>
             <div ngbDropdownMenu aria-labelledby="ageDropdown">
               <ng-container *ngFor="let age of ageList">
@@ -121,7 +122,7 @@
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #networkDropdown="ngbDropdown">
-            <button [ngClass]="{'open': networkDropdown.isOpen()}" class="filterBtn" id="networkDropdown"
+            <button [ngClass]="{'open': networkDropdown.isOpen(), 'selected': filterForm.value.socialNetwork?.length > 0}" class="filterBtn" id="networkDropdown"
               ngbDropdownToggle readonly> Rede </button>
             <div ngbDropdownMenu aria-labelledby="networkDropdown">
               <ng-container *ngFor="let socialNetwork of socialNetworkList">
@@ -143,7 +144,7 @@
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #sentimentDropdown="ngbDropdown">
-            <button [ngClass]="{'open': sentimentDropdown.isOpen()}" class="filterBtn" id="sentimentDropdown"
+            <button [ngClass]="{'open': sentimentDropdown.isOpen(), 'selected': filterForm.value.sentiments?.length > 0}" class="filterBtn" id="sentimentDropdown"
               ngbDropdownToggle readonly> Sentimento </button>
             <div ngbDropdownMenu aria-labelledby="sentimentDropdown">
               <ng-container *ngFor="let sentiments of sentimentList">
@@ -165,9 +166,8 @@
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #politicalPosDropdown="ngbDropdown">
-            <button [ngClass]="{'open': politicalPosDropdown.isOpen()}" class="filterBtn" id="politicalPosDropdown"
-              ngbDropdownToggle readonly> Posicionamento político
-            </button>
+            <button [ngClass]="{'open': politicalPosDropdown.isOpen(), 'selected': filterForm.value.politicalPos.length > 0}" class="filterBtn" id="politicalPosDropdown"
+              ngbDropdownToggle readonly> Posicionamento político </button>
             <div ngbDropdownMenu aria-labelledby="politicalPosDropdown">
               <ng-container *ngFor="let position of positioningList">
                 <div class="filter-item"
@@ -188,7 +188,7 @@
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #subjectsDropdown="ngbDropdown">
-            <button [ngClass]="{'open': subjectsDropdown.isOpen()}" class="filterBtn" id="groupsDropdown"
+            <button [ngClass]="{'open': subjectsDropdown.isOpen(), 'selected': filterForm.value.subjects.length > 0}" class="filterBtn" id="groupsDropdown"
               ngbDropdownToggle readonly> Principais assuntos </button>
             <div ngbDropdownMenu aria-labelledby="subjectsDropdown">
               <ng-container *ngFor="let subject of subjectList">
@@ -210,8 +210,8 @@
       <div>
         <div class="form-group mb-0">
           <div ngbDropdown #groupsDropdown="ngbDropdown">
-            <button [ngClass]="{'open': groupsDropdown.isOpen()}" class="filterBtn" id="groupsDropdown"
-              ngbDropdownToggle readonly> Grupos </button>
+            <button [ngClass]="{'open': groupsDropdown.isOpen(), 'selected': filterForm.value.groups.length > 0}" class="filterBtn" id="groupsDropdown"
+              ngbDropdownToggle readonly> Grupos</button>
             <div ngbDropdownMenu aria-labelledby="groupsDropdown">
               <div class="d-flex flex-wrap mb-3">
                 <ng-container *ngFor="let group of groupList">
@@ -242,7 +242,7 @@
             <button routerLink="wordcloud" ngbDropdownItem>Wordcloud</button>
             <button routerLink="mencoes" ngbDropdownItem>Menções</button>
             <!-- <button routerLink="dados-proprietarios" ngbDropdownItem>Dados proprietário</button> -->
-            <!-- <button routerLink="insights" ngbDropdownItem>Insights</button> -->
+            <button routerLink="insights" ngbDropdownItem>Insights</button>
           </div>
         </div>
       </div>

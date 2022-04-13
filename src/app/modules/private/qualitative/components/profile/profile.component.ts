@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CandidateService } from 'src/app/utils/services/candidate/candidate.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(
+    public candidateService: CandidateService
+  ) { }
 
 }

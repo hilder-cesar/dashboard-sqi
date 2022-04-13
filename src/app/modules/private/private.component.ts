@@ -13,6 +13,7 @@ import { getAgeIcon } from 'src/app/utils/functions/age.function';
 import { getSocialNetworkIcon } from 'src/app/utils/functions/social-network.function';
 import { getSentimentIcon } from 'src/app/utils/functions/sentiment.function';
 import { getGenderIcon } from 'src/app/utils/functions/gender.function';
+import { CandidateService } from 'src/app/utils/services/candidate/candidate.service';
 
 @Component({
   selector: 'app-private',
@@ -48,10 +49,11 @@ export class PrivateComponent extends FilterContainerClass {
     private genericService: GenericService,
     private alert: AlertService,
     protected filterService: FilterService,
-    private calendar: NgbCalendar
+    private candidateService: CandidateService,
+    protected calendar: NgbCalendar
   ) {
 
-    super(activatedRoute, router, formBuilder, ngbParser, calendar);
+    super(activatedRoute, router, formBuilder, ngbParser, calendar, candidateService);
 
   }
 
@@ -85,6 +87,17 @@ export class PrivateComponent extends FilterContainerClass {
     this.getSentiment();
     this.getCities();
     this.getCandidates();
+  }
+
+  handleCandidate(candidateName: string | null): void {
+    const currentValue = this.filterForm.controls.candidate.value;
+    if (currentValue === candidateName) {
+      this.filterForm.controls.candidate.setValue(null);
+      this.candidateService.candidate.next(null);
+      return;
+    }
+    this.filterForm.controls.candidate.setValue(candidateName);
+    this.candidateService.candidate.next(candidateName);
   }
 
   selectionChange(event: Event, value: any): void {
@@ -218,7 +231,7 @@ export class PrivateComponent extends FilterContainerClass {
   }
 
   getCandidates(): void {
-    this.genericService.get('political-profile')
+    this.genericService.get('candidate')
       .pipe(takeUntil(this.onDestroy))
       .subscribe(
         (response: any) => {

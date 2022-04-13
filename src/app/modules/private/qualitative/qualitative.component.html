@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="col-xl-12 p-0">
-    <div class="section-wrapper">
+    <div class="section-wrapper" *ngIf="topSubjects?.length > 0">
       <app-top-subjects [topSubjects]="topSubjects"></app-top-subjects>
     </div>
   </div>

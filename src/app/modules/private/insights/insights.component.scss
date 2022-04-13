@@ -1,0 +1,14 @@
+@import "src/sass/import";
+
+.max-height {
+  height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+  @include flexbox(flex, row, wrap, flex-start, flex-start, flex-start);
+}
+
+.form-control {
+  text-transform: none;
+  padding: 1rem;
+  @include fonte($color-white, "Poppins", 1rem, normal);
+}
