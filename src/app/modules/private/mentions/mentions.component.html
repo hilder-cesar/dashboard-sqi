@@ -4,7 +4,7 @@
   <div class="col-xl-3 p-0">
     <div class="section-wrapper">
 
-      <h5>INFLUENCIADORES</h5>
+      <h5>PUBLICADORES MAIS FREQUENTE</h5>
       <div class="list-wrapper">
 
         <ng-container *ngFor="let influencer of influencersList">
@@ -18,7 +18,7 @@
                 <div class="icon-wrapper">
                   <fa-icon [icon]="faTwitter"></fa-icon>
                 </div>
-                <span>116</span>
+                <span>{{influencer.total}}</span>
               </div>
             </div>
           </div>
