@@ -9,19 +9,20 @@
 
         <ng-container *ngFor="let influencer of influencersList">
           <div class="influencer-wrapper my-4">
-            <fa-icon [icon]="getIcon(influencer.name)"></fa-icon>
+            <img [src]="influencer.photo" [alt]="influencer.name+' foto'">
             <div class="influence-info">
               <div class="d-flex justify-content-between">
-                <p>{{influencer.name}}</p> | <p>{{influencer.total}}</p>
+                <p>{{influencer.name}}</p>
               </div>
-              <div clasas="d-flex">
-                <fa-icon [icon]="faFacebook"></fa-icon>
-                <fa-icon [icon]="faInstagram"></fa-icon>
-                <fa-icon [icon]="faTwitter"></fa-icon>
-                <fa-icon [icon]="faYoutube"></fa-icon>
+              <div class="d-flex align-items-center">
+                <div class="icon-wrapper">
+                  <fa-icon [icon]="faTwitter"></fa-icon>
+                </div>
+                <span>116</span>
               </div>
             </div>
           </div>
+          <hr />
         </ng-container>
 
       </div>
@@ -57,8 +58,7 @@
         <div class="col-xl-4">
           <h5>31-60</h5>
           <div class="list-wrapper">
-            <ng-container
-              *ngFor="let mention of mentionsList | slice:30:60;">
+            <ng-container *ngFor="let mention of mentionsList | slice:30:60;">
               <a [href]="mention.link" target="_blank">
                 <div class="mention-wrapper my-4">
                   <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />
@@ -77,8 +77,7 @@
         <div class="col-xl-4">
           <h5>61-90</h5>
           <div class="list-wrapper">
-            <ng-container
-              *ngFor="let mention of mentionsList | slice:60:90;">
+            <ng-container *ngFor="let mention of mentionsList | slice:60:90;">
               <a [href]="mention.link" target="_blank">
                 <div class="mention-wrapper my-4">
                   <img [src]="mention.autorFoto || 'assets/profile-default.png'" [alt]="'foto de '+mention.autor" />

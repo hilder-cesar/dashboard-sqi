@@ -14,6 +14,7 @@ import { getSocialNetworkIcon } from 'src/app/utils/functions/social-network.fun
 import { getSentimentIcon } from 'src/app/utils/functions/sentiment.function';
 import { getGenderIcon } from 'src/app/utils/functions/gender.function';
 import { CandidateService } from 'src/app/utils/services/candidate/candidate.service';
+import { CandidateInterFace } from 'src/app/utils/interfaces/candidate.interface';
 
 @Component({
   selector: 'app-private',
@@ -55,6 +56,13 @@ export class PrivateComponent extends FilterContainerClass {
 
     super(activatedRoute, router, formBuilder, ngbParser, calendar, candidateService);
 
+    this.filterForm.valueChanges
+      .subscribe((value) => {
+        this.updateQueryParams(value);
+        const finded = this.candidateList.find((candidate) => value.candidate === candidate.name);
+        this.candidateService.candidate.next(finded);
+      });
+
   }
 
   ngOnInit(): void {
@@ -89,15 +97,15 @@ export class PrivateComponent extends FilterContainerClass {
     this.getCandidates();
   }
 
-  handleCandidate(candidateName: string | null): void {
+  handleCandidate(candidate: CandidateInterFace | null): void {
     const currentValue = this.filterForm.controls.candidate.value;
-    if (currentValue === candidateName) {
+    if (currentValue === candidate?.name) {
       this.filterForm.controls.candidate.setValue(null);
       this.candidateService.candidate.next(null);
       return;
     }
-    this.filterForm.controls.candidate.setValue(candidateName);
-    this.candidateService.candidate.next(candidateName);
+    this.filterForm.controls.candidate.setValue(candidate?.name);
+    this.candidateService.candidate.next(candidate);
   }
 
   selectionChange(event: Event, value: any): void {
@@ -236,6 +244,8 @@ export class PrivateComponent extends FilterContainerClass {
       .subscribe(
         (response: any) => {
           this.candidateList = response;
+          const finded = this.candidateList.find((candidate) => this.filterForm.value.candidate === candidate.name);
+          this.candidateService.candidate.next(finded);
           this.alert.closeAlert();
         },
         (error: any) => {

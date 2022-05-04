@@ -16,9 +16,9 @@
                 <div class="filter-item" [ngClass]="{'active': filterForm.value.candidate === candidate.name}">
                   <input [id]="candidate.name" type="checkbox" class="mr-2"
                     [checked]="filterForm.value.candidate === candidate.name"
-                    (click)="handleCandidate(candidate.name)" />
+                    (click)="handleCandidate(candidate)" />
                   <label [for]="candidate.name" class="mb-0">
-                    <img [src]="'assets/candidate/'+candidate.name+'.jpg'" [alt]="'photo'">
+                    <img [src]="candidate?.urlPhoto" [alt]="'photo'">
                     {{candidate.name}}
                   </label>
                 </div>
@@ -221,7 +221,6 @@
                       [checked]="selectionChecked({ name: 'groups', value: group.name })"
                       (change)="selectionChange($event, { name: 'groups', value: group.name})" class="mr-2" />
                     <label [for]="group.name" class="mb-0">
-
                       {{group.name}}
                     </label>
                   </div>

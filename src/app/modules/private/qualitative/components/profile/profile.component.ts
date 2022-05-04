@@ -12,4 +12,8 @@ export class ProfileComponent {
     public candidateService: CandidateService
   ) { }
 
+  ngOnInit(): void {
+    console.log(this.candidateService.candidate.getValue());
+  }
+
 }

@@ -49,6 +49,17 @@
               ],
               "outputHashing": "all"
             },
+            "hml": {
+              "buildOptimizer": true,
+              "optimization": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hml.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,

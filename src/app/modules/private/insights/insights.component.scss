@@ -12,3 +12,30 @@
   padding: 1rem;
   @include fonte($color-white, "Poppins", 1rem, normal);
 }
+
+.section-wrapper {
+  fa-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+  }
+  .date {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    @include fonte($color-grey-light, "Poppins", 0.8rem, 300);
+  }
+}
+
+.submit {
+  border: none;
+  padding: 8px 2rem;
+  background: $grey-background;
+  cursor: pointer;
+  @include fonte($color-white, "Poppins", 1rem, 500);
+  &:disabled {
+    cursor: inherit;
+    opacity: .4;
+  }
+}

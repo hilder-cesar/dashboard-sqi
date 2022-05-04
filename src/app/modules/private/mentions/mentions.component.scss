@@ -36,14 +36,27 @@
   .influence-info {
     width: 100%;
     padding: 0 1rem;
-    @include fonte($color-white, "Poppins", 1.5rem, bold);
+    @include fonte($color-white, "Poppins", 1.2rem, normal);
     p {
       margin: 0;
     }
 
+    span {
+      @include fonte($color-grey-light, "Poppins", 1rem, normal);
+    }
+
+    .icon-wrapper{
+      width: 30px;
+      height: 30px;
+      border: 1px solid $color-grey-light;
+      margin-right: 8px;
+      @include border-radius(50%);
+      @include flexbox(flex, row, nowrap, center, center, center);
+    }
+
     fa-icon {
-      margin-right: 1rem;
       font-size: 1rem;
+      color: $color-grey-light;
     }
   }
 }

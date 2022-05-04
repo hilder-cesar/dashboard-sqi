@@ -5,8 +5,10 @@
 <div class="max-height">
   <ng-container *ngFor="let insight of insightList">
     <div class="col-xl-4">
-      <div class="section-wrapper">
-        <p>{{insight}}</p>
+      <div class="section-wrapper position-relative">
+        <fa-icon (click)="handleDelete(insight.id)" [icon]="faTrash"></fa-icon>
+        <p>{{insight.content}}</p>
+        <span class="date">{{insight.date | date:'dd/MM/yyyy HH:mm'}}</span>
       </div>
     </div>
   </ng-container>
@@ -14,12 +16,12 @@
 
 
 <div class="section-wrapper">
-  <form [formGroup]="insightForm">
+  <form [formGroup]="insightForm" (ngSubmit)="handleSubmit()">
     <div class="form-group">
-      <textarea class="form-control" rows="5"></textarea>
+      <textarea class="form-control" rows="5" formControlName="content"></textarea>
     </div>
     <div class="d-flex justify-content-end">
-      <button>Enviar</button>
+      <button class="submit" [disabled]="insightForm.invalid">Enviar</button>
     </div>
   </form>
 </div>
