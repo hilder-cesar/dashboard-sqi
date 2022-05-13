@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
+  production: true,
   baseUrl: 'http://3.229.157.65:8080/dashboardacmneto'
 };

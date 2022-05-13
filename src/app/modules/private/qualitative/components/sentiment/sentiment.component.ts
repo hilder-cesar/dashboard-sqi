@@ -21,11 +21,9 @@ export class SentimentComponent implements OnChanges {
   chartOptions: Highcharts.Options = {};
 
   @Input() sentimentCount!: SentimentCountInterface;
-  totalValue: number = 0;
 
   ngOnChanges(simpleChanges: SimpleChanges): void {
     if (simpleChanges.sentimentCount.currentValue) {
-      this.totalValue = Object.values(this.sentimentCount).reduce((prev, current) => prev + current, 0);
       this.initChart();
     }
   }
@@ -97,17 +95,16 @@ export class SentimentComponent implements OnChanges {
         },
         formatter: () => {
           return `
-            <span class="positive ball"></span>Positivo: ${Math.round((100 * this.sentimentCount.positive) / this.totalValue)}% <br/> 
-            <span class="negative ball"></span>Negativo: ${Math.round((100 * this.sentimentCount.negative) / this.totalValue)}% <br/> 
-            <span class="impartial ball"></span>Neutro: ${Math.round((100 * this.sentimentCount.impartial) / this.totalValue)}% <br/> 
-            <span class="unqualified ball"></span>Não definido: ${Math.round((100 * this.sentimentCount.unqualified) / this.totalValue)}%`;
+            <span class="positive ball"></span>Positivo: ${Math.round((100 * this.sentimentCount.positive) / this.sentimentCount.totalAnalisado)}% <br/> 
+            <span class="negative ball"></span>Negativo: ${Math.round((100 * this.sentimentCount.negative) / this.sentimentCount.totalAnalisado)}% <br/> 
+            <span class="impartial ball"></span>Neutro: ${Math.round((100 * this.sentimentCount.impartial) / this.sentimentCount.totalAnalisado)}% <br/> `;
         }
       },
       yAxis: {
         min: 0,
-        max: this.totalValue + 1,
+        max: this.sentimentCount.totalAnalisado + 1,
         minorTicks: false,
-        tickInterval: this.totalValue / 6,
+        tickInterval: this.sentimentCount.totalAnalisado / 6,
         lineWidth: 0,
         tickWidth: 2,
         tickLength: 50,
@@ -123,6 +120,9 @@ export class SentimentComponent implements OnChanges {
 
   getSentimentScore(): number {
     const sentiment = cloneDeep(this.sentimentCount);
+    delete sentiment['total' as keyof SentimentCountInterface];
+    delete sentiment['unqualified' as keyof SentimentCountInterface];
+    delete sentiment['totalAnalisado' as keyof SentimentCountInterface];
     Object.keys(sentiment)
       .forEach((key) => {
         let sentimentValue = sentiment[key as keyof SentimentCountInterface];

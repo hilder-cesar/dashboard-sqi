@@ -1,5 +1,5 @@
 <h5>Volume total de menções</h5>
-<p class="total">{{totalValue | number}}</p>
+<p class="total">{{this.sentimentCount?.total | number}}</p>
 <highcharts-chart *ngIf="Highcharts" [Highcharts]="Highcharts" [options]="chartOptions"
   style="width: 100%; display: block;">
 </highcharts-chart>

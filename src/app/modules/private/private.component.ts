@@ -64,7 +64,7 @@ export class PrivateComponent extends FilterContainerClass {
       });
 
   }
-
+  
   ngOnInit(): void {
     this.activatedRoute.queryParams
       .subscribe((params: Params) => {

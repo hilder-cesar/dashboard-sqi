@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Dashboard",
+      "command": "ng b --output-path dist/dashboard",
+      "type": "shell",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false
+      },
+    },
+    {
+      "label": "Presidente",
+      "command": "ng b --output-path dist/presidente --c=presidente ",
+      "type": "shell",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false
+      },
+    },
+    {
+      "label": "ACM Neto",
+      "command": "ng b --output-path dist/acmneto --c=acmneto ",
+      "type": "shell",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false
+      },
+    },
+    {
+      "label": "Governador",
+      "command": "ng b --output-path dist/governador --c=governador ",
+      "type": "shell",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false
+      },
+    }
+  ]
+}

@@ -3,6 +3,8 @@ export interface SentimentCountInterface {
   negative: number;
   positive: number;
   unqualified: number;
+  total: number;
+  totalAnalisado: number;
 }
 
 export interface SentimentTime {
